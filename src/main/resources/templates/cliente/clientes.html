@@ -39,14 +39,26 @@
                               <th scope="col"> Nome </th>
                               <th scope="col"> Endereço </th>
                               <th scope="col"> Telefone </th>
+                              <th scope="col"> E-mail </th> 
                             </tr>
                           </thead>
                           <tbody>
                             <tr th:each="cliente: ${clientes}">
-                              <th id="id" scope="row"> 1 </th>
+                              <th id="id" scope="row" th:text="${cliente.identificador}"/>
                               <td id="nome" th:text="${cliente.nome}"/>
                               <td id="endereco" th:text="${cliente.endereco}"/>
                               <td id="telefone"th:text="${cliente.telefone}"/>
+                              <td id="telefone"th:text="${cliente.telefone}"/>
+                              <td>
+                                  <div class="">
+                                    <a href="/cadastrar-cliente">
+                                    <button id="cadastrar" type="button" class="btn btn-outline-primary">Cadastrar</button>
+                                    </a>
+                                    <button id="editar" type="button" class="btn btn-outline-warning">Editar</button>
+                                    <button id="apagar" type="button" class="btn btn-outline-danger">Apagar</button>
+                                     <a th:href="${cliente.identificador}">Delete</a>
+                                  </div>
+                              </td>
                             </tr>
                           </tbody>
                     </table>
