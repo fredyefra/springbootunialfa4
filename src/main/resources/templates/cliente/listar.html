@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add CSS and JS to Thymeleaf</title>
+<link th:href="@{/style/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<form method="post">
+		<tr th:each="cliente: ${clientes}">
+			<td th:text="${cliente.identificador}" />
+			<td th:text="${cliente.nome}" />
+		</tr>
+
+		<h2>Carefully Styled Heading</h2>
+		<p>
+			This is text on which we want to apply <strong>very special</strong>
+			styling.
+		</p>
+
+	</form>
+</body>
+</html>
