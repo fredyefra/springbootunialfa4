@@ -22,8 +22,8 @@ public class DataService {
 	public void startDB() {
 
 		Cliente c1 = new Cliente(null, "Thomas Edson", "Rua XV de Novembro - Esquina 50", "9999-9999");
-		Cliente c2 = new Cliente(null, "Marie Curie", "Nova Venezia - Rua 777", "9999-9999");
-		Cliente c3 = new Cliente(null, "James Gosling", "Bahia Beach - Centro 32", "9999-9999");
+		Cliente c2 = new Cliente(null, "Marie Curie", "Nova Venezia - Rua 777", "5555-4444");
+		Cliente c3 = new Cliente(null, "James Gosling", "Bahia Beach - Centro 32", "8888-7777");
 
 		Veiculo v1 = new Veiculo(null, "Mustang Gt", "Ford", "2018-2019", 2018, c1);
 		Veiculo v2 = new Veiculo(null, "Puma Gts", "Puma", "  1971-1972", 1971, c1);

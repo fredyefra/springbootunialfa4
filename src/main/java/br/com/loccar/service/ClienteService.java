@@ -21,13 +21,13 @@ public class ClienteService {
 	}
 	
 	public Cliente findById(Integer id) {
-		Optional<Cliente> categoria = repository.findById(id);
-		return categoria.orElseThrow();
+		Optional<Cliente>  cliente = repository.findById(id);
+		return cliente.orElseThrow();
 	}
 	
-	public Cliente save(Cliente categoria) {
-		categoria.setIdentificador(null); // if id null jpa create new object
-		return repository.save(categoria);
+	public Cliente save(Cliente  cliente) {
+		 cliente.setIdentificador(null); // if id null jpa create new object
+		return repository.save(cliente);
 	}
 
 	public Cliente update(Integer id, Cliente obj) {

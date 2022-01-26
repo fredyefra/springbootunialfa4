@@ -1,0 +1,28 @@
+.container__geral {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.container__sub {
+    width: 90%;
+}
+
+.container__logo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.locadora__login {
+    width: 50%;
+    padding: 5px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
