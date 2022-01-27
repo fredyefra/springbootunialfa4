@@ -25,13 +25,15 @@ public class DataService {
 		Cliente c2 = new Cliente(null, "Marie Curie", "Nova Venezia - Rua 777", "5555-4444");
 		Cliente c3 = new Cliente(null, "James Gosling", "Bahia Beach - Centro 32", "8888-7777");
 
-		Veiculo v1 = new Veiculo(null, "Mustang Gt", "Ford", "2018-2019", 2018, c1);
-		Veiculo v2 = new Veiculo(null, "Puma Gts", "Puma", "  1971-1972", 1971, c1);
-		Veiculo v3 = new Veiculo(null, "Volvo Xc60", "Volvo", "2017-2018", 2017, c2);
-		Veiculo v4 = new Veiculo(null, "Audi TT", "Audi", "2012-2013", 2012, c3);
+		/*
+		 * Veiculo v1 = new Veiculo(null, "Mustang Gt", "Ford", "2018-2019", 2018, c1);
+		 * Veiculo v2 = new Veiculo(null, "Puma Gts", "Puma", "  1971-1972", 1971, c1);
+		 * Veiculo v3 = new Veiculo(null, "Volvo Xc60", "Volvo", "2017-2018", 2017, c2);
+		 * Veiculo v4 = new Veiculo(null, "Audi TT", "Audi", "2012-2013", 2012, c3);
+		 */
 
 		clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
-		veiculoRepository.saveAll(Arrays.asList(v1, v2, v3, v4));
+		//veiculoRepository.saveAll(Arrays.asList(v1, v2, v3, v4));
 
 	}
 }

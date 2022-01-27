@@ -55,8 +55,15 @@
                                     <button id="cadastrar" type="button" class="btn btn-outline-primary">Cadastrar</button>
                                     </a>
                                     <button id="editar" type="button" class="btn btn-outline-warning">Editar</button>
-                                    <button id="apagar" type="button" class="btn btn-outline-danger">Apagar</button>
-                                     <a th:href="${cliente.identificador}">Delete</a>
+                                    
+                                    
+                                    <a th:href="@{/delete/{identificador}(identificador=${cliente.identificador})}"> 
+                                   
+                                      <button id="apagar" type="button" class="btn btn-outline-danger">Apagar</button>
+                                     
+                                     </a>
+                                     
+                                     <!-- <a th:href="${cliente.identificador}">Delete</a> -->
                                   </div>
                               </td>
                             </tr>

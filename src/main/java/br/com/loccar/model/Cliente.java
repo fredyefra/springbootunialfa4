@@ -22,8 +22,9 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String endereco;
 	private String telefone;
-
-	private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+    private String email;
+	
+    private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 
 	public Cliente() {
 
@@ -34,10 +35,8 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
-		//this.veiculos = veiculos;
+		// this.veiculos = veiculos;
 	}
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,4 +83,11 @@ public class Cliente implements Serializable {
 		this.veiculos = veiculos;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

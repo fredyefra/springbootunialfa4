@@ -7,5 +7,5 @@ import br.com.loccar.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-
+	Cliente findByIdentificador(Integer identificador);
 }
