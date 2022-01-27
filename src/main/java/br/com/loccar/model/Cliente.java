@@ -23,18 +23,19 @@ public class Cliente implements Serializable {
 	private String endereco;
 	private String telefone;
     private String email;
-	
+    	
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 
 	public Cliente() {
 
 	}
 
-	public Cliente(Integer identificador, String nome, String endereco, String telefone) {
+	public Cliente(Integer identificador, String nome, String endereco, String telefone, String email) {
 		this.identificador = identificador;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
+		this.email = email;
 		// this.veiculos = veiculos;
 	}
 
