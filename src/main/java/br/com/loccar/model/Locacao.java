@@ -16,21 +16,17 @@ public class Locacao implements Serializable {
 
 	private Integer identificador;
 	private Cliente cliente;
-	//private Veiculo veiculo;
+	// private Veiculo veiculo;
 
 	public Locacao() {
 
 	}
-	
-	
-	
+
 	public Locacao(Integer identificador, Cliente cliente) {
-		
+
 		this.identificador = identificador;
 		this.cliente = cliente;
 	}
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +39,7 @@ public class Locacao implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "fkCliente" , nullable = false)
+	@JoinColumn(name = "fkCliente", nullable = false)
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -52,6 +48,4 @@ public class Locacao implements Serializable {
 		this.cliente = cliente;
 	}
 
-	
-	
 }
