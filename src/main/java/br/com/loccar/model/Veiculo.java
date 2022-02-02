@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Veiculo implements Serializable {
@@ -20,20 +18,19 @@ public class Veiculo implements Serializable {
 	private String modelo;
 	private Integer anoFabricacao;
 
-	private Cliente cliente;
+	// private Cliente cliente;
 
 	public Veiculo() {
 
 	}
 
-	public Veiculo(Integer identificador, String nome, String marca, String modelo, Integer anoFabricacao,
-			Cliente cliente) {
+	public Veiculo(Integer identificador, String nome, String marca, String modelo, Integer anoFabricacao) {
 		this.identificador = identificador;
 		this.nome = nome;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.anoFabricacao = anoFabricacao;
-		this.cliente = cliente;
+		// this.cliente = cliente;
 	}
 
 	@Id
@@ -76,17 +73,6 @@ public class Veiculo implements Serializable {
 
 	public void setAnoFabricacao(Integer anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
-	}
-
-	//@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	@Override

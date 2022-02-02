@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +23,9 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String endereco;
 	private String telefone;
-    private String email;
-    	
-    private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+	private String email;
+
+	private List<Locacao> locacaos = new ArrayList<Locacao>();
 
 	public Cliente() {
 
@@ -36,7 +37,7 @@ public class Cliente implements Serializable {
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.email = email;
-		// this.veiculos = veiculos;
+        //this.locacaos = locacaos;
 	}
 
 	@Id
@@ -75,13 +76,13 @@ public class Cliente implements Serializable {
 		this.telefone = telefone;
 	}
 
-	@OneToMany(mappedBy = "cliente")
-	public List<Veiculo> getVeiculos() {
-		return veiculos;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+	public List<Locacao> getLocacaos() {
+		return locacaos;
 	}
 
-	public void setVeiculos(List<Veiculo> veiculos) {
-		this.veiculos = veiculos;
+	public void setLocacaos(List<Locacao> locacaos) {
+		this.locacaos = locacaos;
 	}
 
 	public String getEmail() {
