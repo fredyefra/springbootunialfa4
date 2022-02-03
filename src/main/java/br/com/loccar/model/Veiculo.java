@@ -1,11 +1,15 @@
 package br.com.loccar.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Veiculo implements Serializable {
@@ -18,7 +22,7 @@ public class Veiculo implements Serializable {
 	private String modelo;
 	private Integer anoFabricacao;
 
-	// private Cliente cliente;
+	private List<Locacao> locacaos = new ArrayList<Locacao>();
 
 	public Veiculo() {
 
@@ -73,6 +77,15 @@ public class Veiculo implements Serializable {
 
 	public void setAnoFabricacao(Integer anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculo")
+	public List<Locacao> getLocacaos() {
+		return locacaos;
+	}
+
+	public void setLocacaos(List<Locacao> locacaos) {
+		this.locacaos = locacaos;
 	}
 
 	@Override

@@ -35,20 +35,27 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                             <th scope="col"> ID </th>
-                              <th scope="col"> Nome </th>
+                             <!-- <th scope="col"> ID </th> -->
+                              <th scope="col"> Cliente </th>
                               <th scope="col"> Endereço </th>
                               <th scope="col"> Telefone </th>
                               <th scope="col"> E-mail </th> 
+                              <th scope="col"> Veículo </th>
+                              <th scope="col"> Marca </th>
+                              <th scope="col"> Modelo/Ano Fabricação </th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr th:each="locacao: ${locacoes}">
-                              <th id="id" scope="row" th:text="${locacao.identificador}"/>
+                              <!-- <th id="id" scope="row" th:text="${locacao.identificador}"/> -->
                               <td id="nome" th:text="${locacao.cliente.nome}"/>
                               <td id="endereco" th:text="${locacao.cliente.endereco}"/>
                               <td id="telefone"th:text="${locacao.cliente.telefone}"/>
                               <td id="email"th:text="${locacao.cliente.email}"/>
+                              <td id="veiculo"th:text="${locacao.veiculo.nome}"/>
+                              <td id="marca"th:text="${locacao.veiculo.marca}"/>
+                              <td id="modelo"th:text="${locacao.veiculo.modelo}+ ' ' +${locacao.veiculo.anoFabricacao}"/>
+                              
                               <td>
                                   <div class="">
                                     <a href="/cadastrar-cliente">

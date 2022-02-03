@@ -39,11 +39,12 @@ public class DataService {
 		Veiculo v3 = new Veiculo(null, "Volvo Xc60", "Volvo", "2017-2018", 2017);
 		Veiculo v4 = new Veiculo(null, "Audi TT", "Audi", "2012-2013", 2012);
 
-		Locacao l1 = new Locacao(null, c1);
-
+		Locacao l1 = new Locacao(null, c1, v1);
+		Locacao l2 = new Locacao(null, c2, v2);
+		
 		clienteRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5));
 		veiculoRepository.saveAll(Arrays.asList(v1, v2, v3, v4));
-		locacaoRepository.saveAll(Arrays.asList(l1));
+		locacaoRepository.saveAll(Arrays.asList(l1,l2));
 
 	}
 }
