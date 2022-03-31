@@ -24,7 +24,8 @@ public class Cliente implements Serializable {
 	private String endereco;
 	private String telefone;
 	private String email;
-
+    private StatusPagamento statusPagamento; 
+	
 	private List<Locacao> locacaos = new ArrayList<Locacao>();
 
 	public Cliente() {
@@ -37,10 +38,16 @@ public class Cliente implements Serializable {
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.email = email;
-        //this.locacaos = locacaos;
-	}
+    }
 
-	@Id
+	  public Cliente( String nome, String endereco, String telefone, String email){ 
+		  this.nome = nome; 
+		  this.endereco = endereco; 
+		  this.telefone = telefone;
+	      this.email = email; 
+	}
+	 
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getIdentificador() {
 		return identificador;
@@ -91,5 +98,20 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	//@Enumerated(EnumType.STRING)
+	public StatusPagamento getStatusPagamento() {
+		return statusPagamento;
+	}
+
+	public void setStatusPagamento(StatusPagamento statusPagamento) {
+		this.statusPagamento = statusPagamento;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [identificador=" + identificador + ", nome=" + nome + ", endereco=" + endereco + ", telefone="
+				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + "]";
 	}
 }

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
@@ -9,6 +10,8 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link th:href="@{/style/styles.css}" rel="stylesheet" />
         <link th:href="@{/style/locadora.css}" rel="stylesheet" />
+        <link th:href="@{/style/main.css}" rel="stylesheet" /> 
+        <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -19,8 +22,8 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item"><a class="nav-link" href="funcionarios.html"> Funcionários </a></li>
-                                <li class="nav-item active"><a class="nav-link" href="clientes.html"> Clientes </a></li>
+                                <li class="nav-item"><a class="nav-link" href="clientes.html"> Funcionários </a></li>
+                                <li class="nav-item active"><a class="nav-link" href="clientes"> Clientes </a></li>
                                 <li class="nav-item"><a class="nav-link" href="veiculos.html"> Veiculos </a></li>
                                 <li class="nav-item"><a class="nav-link" href="login.html"> login </a></li>
                             </ul>
@@ -30,7 +33,7 @@
             
                 <div class="container-fluid container__sub">
                     <h1 class="mt-4"> Clientes </h1>
-                    <p> Linsta de clientes </p>
+                    <p> Lista de Clientes </p>
 
                     <table class="table table-striped">
                         <thead>
