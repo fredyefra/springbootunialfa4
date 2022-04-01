@@ -49,13 +49,11 @@
                         </div>
                         <div class="col-md-6">
                             <label for="form-label" class="form-label"> *Telefone </label>
-                            <input type="tel" class="form-control"  name="telefone" placeholder="Digite aqui seu telefone">
+                            <input type="tel" class="form-control" th:errorclass="is-invalid"th:field="*{telefone}"  placeholder="Digite aqui seu telefone">
                         </div>
                         <div class="col-md-6">
                             <label for="form-label" class="form-label"> *Email </label>
-                            <input type="text" class="form-control bi bi-envelope" name="email"   placeholder="Digite aqui seu email"> 
-                            <i class="bi bi-envelope"></i>
-                            </input>
+                            <input type="text" class="form-control " th:errorclass="is-invalid" th:field="*{email}"   placeholder="Digite aqui seu email"> 
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary"> Cadastrar </button>

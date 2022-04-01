@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -60,20 +58,9 @@ public class Cliente implements Serializable {
 		this.identificador = identificador;
 	}
 
-	/*
-	 * @NotEmpty(message = "Campo NOME é requerido")
-	 * 
-	 * @Length(min = 3, max = 100, message =
-	 * "O Campo NOME deve ter entre 3 e 50 caracteres")
-	 * 
-	 * @Column(nullable = false)
-	 * 
-	 * @NotNull(message = "Não pode ser nulo!")
-	 */
-	
-	//@NotEmpty(message = "Campo NOME é requerido")
-	@NotBlank
-	@NotNull
+	@NotBlank //(message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
+	@Length(min = 3, max = 100, message = "O Campo deve ter entre 3 e 50 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -82,9 +69,8 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
-	
-	@NotBlank
-	@NotNull
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getEndereco() {
 		return endereco;
 	}
@@ -92,7 +78,9 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
+    
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getTelefone() {
 		return telefone;
 	}
@@ -110,6 +98,8 @@ public class Cliente implements Serializable {
 		this.locacaos = locacaos;
 	}
 
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getEmail() {
 		return email;
 	}

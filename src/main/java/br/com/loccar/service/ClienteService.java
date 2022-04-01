@@ -14,19 +14,19 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repository;
-	
-	
+
+
 	public List<Cliente> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Cliente findById(Integer id) {
 		Optional<Cliente>  cliente = repository.findById(id);
 		return cliente.orElseThrow();
 	}
-	
+
 	public Cliente save(Cliente  cliente) {
-		 cliente.setIdentificador(null); // if id null jpa create new object
+		cliente.setIdentificador(null); // if id null jpa create new object
 		return repository.save(cliente);
 	}
 
@@ -36,5 +36,4 @@ public class ClienteService {
 		cliente.setEndereco(obj.getEndereco());
 		return repository.save(cliente);
 	}
-	
 }
