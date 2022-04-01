@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -57,8 +60,20 @@ public class Cliente implements Serializable {
 		this.identificador = identificador;
 	}
 
-	@NotEmpty(message = "Campo NOME é requerido")
-	@Length(min = 3, max = 100, message = "O Campo NOME deve ter entre 3 e 50 caracteres")
+	/*
+	 * @NotEmpty(message = "Campo NOME é requerido")
+	 * 
+	 * @Length(min = 3, max = 100, message =
+	 * "O Campo NOME deve ter entre 3 e 50 caracteres")
+	 * 
+	 * @Column(nullable = false)
+	 * 
+	 * @NotNull(message = "Não pode ser nulo!")
+	 */
+	
+	//@NotEmpty(message = "Campo NOME é requerido")
+	@NotBlank
+	@NotNull
 	public String getNome() {
 		return nome;
 	}
@@ -67,6 +82,9 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
+	
+	@NotBlank
+	@NotNull
 	public String getEndereco() {
 		return endereco;
 	}

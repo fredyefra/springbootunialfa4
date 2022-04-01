@@ -9,16 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.loccar.dto.ClienteDTO;
 import br.com.loccar.model.Cliente;
 import br.com.loccar.repositories.ClienteRepository;
-
 
 @Controller
 public class ClienteController implements java.io.Serializable {
@@ -28,61 +23,75 @@ public class ClienteController implements java.io.Serializable {
 	@Autowired
 	private ClienteRepository repository;
 
-	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ClienteController.class.getName());
+	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger
+			.getLogger(ClienteController.class.getName());
 
-	/**
-	 * Redireciona para pagina listar clientes
-	 **/
-	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
-	public ModelAndView listar(Model model) {
+	@GetMapping("/clientes")
+	public ModelAndView index() {
 		List<Cliente> clientes = repository.findAll();
-		//List<ClienteDTO> dto = clientes.stream().map(obj->new ClienteDTO(obj)).collect(Collectors.toList());
-		ModelAndView mv = new ModelAndView( "cliente/clientes");
+		ModelAndView mv = new ModelAndView("cliente/clientes");
 		mv.addObject("clientes", clientes);
 		return mv;
 	}
 
-	/**
-	 * Redireciona para o form salvar cliente
-	 **/
-	@RequestMapping(value = "/cadastrar-cliente")
-	public String navegacaoCadastrar(Model model) {
-		Cliente cliente = new Cliente();
-		model.addAttribute("cliente", cliente);
+	@GetMapping(value = "/cadastrar-cliente")
+	public String navegacaoCadastrar(Cliente cliente) {
+		/*
+		 * this.cliente = new Cliente(); ModelAndView mv = new
+		 * ModelAndView("cliente/cadastrar-cliente"); mv.addObject("cliente",
+		 * this.cliente);
+		 */
 		return "cliente/cadastrar-cliente";
 	}
 
-	/**
-	 * Salva  o cliente na base
-	 **/
-	@RequestMapping(value="/cadastrar-cliente", method=RequestMethod.POST)
-	public String save(@Valid Cliente dto, BindingResult result, RedirectAttributes attributes){
+	@PostMapping("/clientes")
+	public ModelAndView save(@Valid Cliente dto, BindingResult result, Model model) {
 
-		if(result.hasErrors()){
-			attributes.addFlashAttribute("mensagem", "Verifique os campos obrigatórios!");
-			return "redirect:/cadastrar-cliente";
+		if (result.hasErrors()) {
+			ModelAndView mv = new ModelAndView("cliente/cadastrar-cliente") ;
+            //mv.addObject("cliente", this.cliente);
+            //return "cliente/cadastrar-cliente";
+			return mv;
 		}
 
-		else {
-			//Cliente cliente = dto.toCliente();
+		/*
+		 * else { // Cliente cliente = dto.toCliente(); this.cliente = cliente;
+		 * repository.save(this.cliente); //
+		 * attributes.addFlashAttribute("mensagem","Cliente cadastrado com sucesso! ");
+		 * LOGGER.info("Parametros DTO " + this.cliente);
+		 * 
+		 * ModelAndView mv = new ModelAndView("cliente/clientes");
+		 * mv.addObject("cliente", this.cliente);
+		 * 
+		 * return mv; }
+		 */
+
+		
+			//this.cliente = dto.toCliente();
+			
 			repository.save(dto);
-			attributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso! ");
-			LOGGER.info("Parametros DTO " + dto);
-
-		}
-
-		return "redirect:/clientes";
+			LOGGER.info("Objeto Status ------> " + dto.getClass().getName());
+			
+			return new ModelAndView("redirect:/clientes");
+		
+		
 	}
 
+		
 	/**
-	 * Exclui  o cliente na base
-	 **/
-	@GetMapping(value = "delete/{identificador}")
-	public String deleteStudent(@PathVariable("identificador") Integer identificador, Model model, RedirectAttributes attributes) {
-		Cliente cliente = repository.findByIdentificador(identificador);
-		repository.delete(cliente);
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso " + cliente.getNome()+".");
-		model.addAttribute("clientes", repository.findAll());
-		return "redirect:/clientes";
-	}
+	 * Exclui o cliente na base
+	 **//*
+		 * @GetMapping(value = "delete/{identificador}") public String
+		 * deleteStudent(@PathVariable("identificador") Integer identificador, Model
+		 * model, RedirectAttributes attributes) { Cliente cliente =
+		 * repository.findByIdentificador(identificador); repository.delete(cliente);
+		 * attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso " +
+		 * cliente.getNome()+"."); model.addAttribute("clientes", repository.findAll());
+		 * return "redirect:/clientes"; }
+		 * 
+		 * public Cliente getCliente() { return cliente; }
+		 * 
+		 * public void setCliente(Cliente cliente) { this.cliente = cliente; }
+		 */
+
 }

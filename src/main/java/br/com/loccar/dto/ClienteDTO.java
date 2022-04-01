@@ -1,5 +1,12 @@
 package br.com.loccar.dto;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.loccar.model.Cliente;
 
 public class ClienteDTO {
@@ -8,32 +15,49 @@ public class ClienteDTO {
 	private String endereco;
 	private String telefone;
 	private String email;
-	
-	
-	
+
+
+
 	public ClienteDTO() {
-	
+
 	}
-	
+
 	public Cliente toCliente() {
-    	Cliente cliente = new Cliente();
-    	cliente.setNome(this.nome);
-    	cliente.setEndereco(this.endereco);
-    	cliente.setTelefone(this.telefone);
-    	cliente.setEmail(this.email);
-    	
-    	return  cliente;
-    	
-    } 
+		Cliente cliente = new Cliente();
+		cliente.setNome(this.nome);
+		cliente.setEndereco(this.endereco);
+		cliente.setTelefone(this.telefone);
+		cliente.setEmail(this.email);
+
+		return  cliente;
+
+	} 
+
+	/*
+	 * @NotEmpty(message = "Campo NOME é requerido")
+	 * 
+	 * @Length(min = 3, max = 100, message =
+	 * "O Campo NOME deve ter entre 3 e 50 caracteres")
+	 * 
+	 * @Column(nullable = false)
+	 * 
+	 * @NotNull(message = "Não pode ser nulo!")
+	 */
 	
+	//@NotEmpty(message = "Campo NOME é requerido")
+	@NotBlank
+	@NotNull
 	public String getNome() {
 		return nome;
 	}
-	
-	  
+
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@NotBlank
+	@NotNull
 	public String getEndereco() {
 		return endereco;
 	}
@@ -52,7 +76,7 @@ public class ClienteDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
+
 	@Override
 	public String toString() {
 		return "ClienteDTO [nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email
