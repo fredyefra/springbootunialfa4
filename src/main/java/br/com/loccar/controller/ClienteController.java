@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,17 +63,13 @@ public class ClienteController implements java.io.Serializable {
 			Cliente cliente) {
 
         cliente = service.findById(id);
-
-       Cliente obj = service.update(id, cliente);
-        
-		ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
+        Cliente obj = service.update(id, cliente);
+        ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
 		
 		mv.addObject(obj);
 
-
 		return mv;
 	}
-
 
 	/**
 	 * Exclui o cliente na base
