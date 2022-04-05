@@ -50,7 +50,7 @@ public class ClienteController implements java.io.Serializable {
 		}
 		//this.cliente = dto.toCliente();
 		service.save(cliente);
-		attributes.addFlashAttribute("message","Salvo com sucesso!");
+		attributes.addFlashAttribute("message", "Salvo com sucesso!");
 		LOGGER.info("Objeto Status ------> " + cliente.getClass().getName());
 
 		return new ModelAndView("redirect:/clientes");
