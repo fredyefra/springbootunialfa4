@@ -1,6 +1,7 @@
 package br.com.loccar.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -50,7 +51,7 @@ public class ClienteController implements java.io.Serializable {
 		}
 		//this.cliente = dto.toCliente();
 		service.save(cliente);
-		attributes.addFlashAttribute("message", "Salvo com sucesso!");
+		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
 		LOGGER.info("Objeto Status ------> " + cliente.getClass().getName());
 
 		return new ModelAndView("redirect:/clientes");

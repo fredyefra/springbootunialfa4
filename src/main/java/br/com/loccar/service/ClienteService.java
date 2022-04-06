@@ -21,8 +21,8 @@ public class ClienteService {
 	}
 
 	public Cliente findById(Integer id) {
-		Optional<Cliente>  cliente = repository.findById(id);
-		return cliente.orElseThrow();
+		Optional<Cliente>  optional = repository.findById(id);
+		return optional.orElseThrow(() -> new RuntimeException("Objeto não encontrado! id: " + id + Cliente.class));
 	}
 
 	public Cliente save(Cliente  cliente) {
