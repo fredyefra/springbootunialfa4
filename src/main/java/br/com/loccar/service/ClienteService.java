@@ -36,4 +36,5 @@ public class ClienteService {
 		cliente.setEndereco(obj.getEndereco());
 		return repository.save(cliente);
 	}
+
 }

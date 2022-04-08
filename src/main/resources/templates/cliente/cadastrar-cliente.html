@@ -57,13 +57,11 @@
                             <input type="text" class="form-control bi bi-envelope" name="email"   placeholder="Digite aqui seu email"> 
                             
                         </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
-                            
-                        </div>
                         
-                        <div class="col-12">
-                            <button  type="submit" class="btn btn-primary" onclick="history.back()"> Cancelar </button>
+                        <div class="container my-4 text-center">
+                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
+                            <!-- <button  type="submit" class="btn btn-primary" onclick="history.back()"> Cancelar </button> -->
+                            <a class="btn btn-danger" target="_blank" th:href="@{clientes}" role="button">Cancelar <i class="fab fa-github ms-2"></i></a>
                         </div>
                       
                       </form>
