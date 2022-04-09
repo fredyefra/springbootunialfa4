@@ -50,26 +50,25 @@
                             <tr th:each="cliente: ${clientes}">
                               <th id="id" scope="row" th:text="${cliente.identificador}"/>
                               <td id="nome" th:text="${cliente.nome}"/>
-                              <td id="endereco" th:text="${cliente.endereco}"/>
+                              <td id="endereco" th:text="${cliente.endereco}"  />
                               <td id="telefone"th:text="${cliente.telefone}"/>
-                              <td id="email"th:text="${cliente.email}"/>
+                              <td id="email"   th:text="${cliente.email}" />
                               <td>
-                                  <div class="">
+                                  <div class="text-center"> 
                                     <a href="/cadastrar-cliente">
-                                    <button id="cadastrar" type="button" class="btn btn-outline-primary">Cadastrar</button>
+                                    <button id="cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
                                     </a>
                                     
-                                    <a th:href="@{/clientes/{id}(id=${cliente.identificador})}">
-                                    <button id="editar" type="button" class="btn btn-outline-warning">Editar</button>
+                                    <a th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
+                                    <button id="editar" type="button" class="btn btn-warning">Editar</button>
                                     </a>
                                     
                                     <a th:href="@{/delete/{identificador}(identificador=${cliente.identificador})}"> 
                                    
-                                      <button id="apagar" type="button" class="btn btn-outline-danger">Apagar</button>
+                                      <button id="apagar" type="button" class="btn btn-danger">Apagar</button>
                                      
                                      </a>
                                      
-                                     <!-- <a th:href="${cliente.identificador}">Delete</a> -->
                                   </div>
                               </td>
                             </tr>

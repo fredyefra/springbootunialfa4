@@ -1,11 +1,7 @@
 package br.com.loccar.dto;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 import br.com.loccar.model.Cliente;
 
@@ -33,6 +29,15 @@ public class ClienteDTO {
 
 	} 
 
+
+	public void fromCliente(Cliente cliente) {
+		this.nome = cliente.getNome();
+	    this.endereco = cliente.getEndereco();
+	    this.telefone = cliente.getTelefone();
+	    this.email = cliente.getEmail();
+	}
+	
+	
 	/*
 	 * @NotEmpty(message = "Campo NOME é requerido")
 	 * 
