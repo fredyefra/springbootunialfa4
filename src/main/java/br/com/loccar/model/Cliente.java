@@ -1,6 +1,7 @@
 package br.com.loccar.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class Cliente implements Serializable  {
 	private String telefone;
 	private String email;
     private StatusPagamento statusPagamento; 
+	private LocalDate dtCadastro = LocalDate.now();
+    
+	
 	
 	private List<Locacao> locacaos = new ArrayList<Locacao>();
 
@@ -39,7 +43,8 @@ public class Cliente implements Serializable  {
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.email = email;
-    }
+         
+	}
 
 	  public Cliente( String nome, String endereco, String telefone, String email){ 
 		  this.nome = nome; 
