@@ -1,6 +1,5 @@
 package br.com.loccar.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 
-
-	public List<Cliente> findAll() {
-		return repository.findAll();
+	public Iterable<Cliente> findAll() {
+		Iterable<Cliente> iterable = repository.findAll();
+		return iterable;
 	}
 
 	public Cliente findById(Integer id) {
