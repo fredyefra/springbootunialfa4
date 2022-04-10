@@ -1,7 +1,6 @@
 package br.com.loccar.controller;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.loccar.model.Cliente;
-import br.com.loccar.repositories.ClienteRepository;
+import br.com.loccar.service.ClienteService;
 
 @Controller
 public class ClienteController implements Serializable  {
@@ -25,14 +24,14 @@ public class ClienteController implements Serializable  {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private ClienteRepository service;
+	private ClienteService service;
 
 	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger
 			.getLogger(ClienteController.class.getName());
 
 	@GetMapping("/clientes")
 	public ModelAndView index() {
-		List<Cliente> clientes = service.findAll();
+		Iterable<Cliente> clientes = service.findAll();
 		ModelAndView mv = new ModelAndView("cliente/clientes");
 		mv.addObject("clientes", clientes);
 		return mv;
@@ -53,7 +52,6 @@ public class ClienteController implements Serializable  {
 		// this.cliente = dto.toCliente();
 		service.save(cliente);
 		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
-		LOGGER.info("Objeto Status ------> " + cliente.getClass().getName());
 
 		return new ModelAndView("redirect:/clientes");
 
@@ -64,13 +62,10 @@ public class ClienteController implements Serializable  {
 
 		Optional<Cliente> optional = service.findById(id);
 
-		if (optional.isPresent()) {
 			Cliente cliente = optional.get();
 			ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
 			mv.addObject(cliente);
 			return mv;
-		}
-		return new ModelAndView("redirect:/clientes");
 	}
 
 	@PostMapping("/clientes/{id}")
@@ -80,42 +75,19 @@ public class ClienteController implements Serializable  {
 
 		if (optional.isPresent()) {
 			Cliente x = optional.get();
-
 			x.setNome(cliente.getNome());
 			x.setEndereco(cliente.getEndereco());
 			x.setTelefone(cliente.getTelefone());
 			x.setEmail(cliente.getEmail());
 
-			service.save(x);
+			service.update(id, x);
 			attributes.addFlashAttribute("message", "Alteração efetuada com sucesso!");
 			ModelAndView mv = new ModelAndView("redirect:/clientes");
-			// mv.addObject(optional.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
 
-	/*
-	 * @GetMapping("/clientes/{id}") public ModelAndView
-	 * detalhar(@Valid @PathVariable Integer id, Cliente cliente) {
-	 * 
-	 * //cliente = service.findById(id); //Cliente obj = service.update(id,
-	 * cliente);
-	 * 
-	 * Optional<Cliente> optional = service.findById(id);
-	 * 
-	 * Cliente x = optional.get();
-	 * 
-	 * 
-	 * ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
-	 * mv.addObject("clienteid",x.getIdentificador());
-	 * 
-	 * service.save(x);
-	 * 
-	 * //mv.addObject(obj);
-	 * 
-	 * return mv; }
-	 */
 	/**
 	 * Exclui o cliente na base
 	 **//*

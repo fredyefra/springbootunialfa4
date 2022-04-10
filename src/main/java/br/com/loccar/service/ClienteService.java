@@ -19,21 +19,22 @@ public class ClienteService {
 		return iterable;
 	}
 
-	public Cliente findById(Integer id) {
+	public Optional<Cliente> findById(Integer id) {
 		Optional<Cliente>  optional = repository.findById(id);
-		return optional.orElseThrow(() -> new RuntimeException("Objeto não encontrado! id: " + id + Cliente.class));
+		//return optional.orElseThrow(() -> new RuntimeException("Objeto não encontrado! id: " + id + Cliente.class));
+		return optional;
 	}
-
+	
+	// if id null jpa create new object
 	public Cliente save(Cliente  cliente) {
-		cliente.setIdentificador(null); // if id null jpa create new object
+		cliente.setIdentificador(null); 
 		return repository.save(cliente);
 	}
 
+	//if id exist jpa update object
 	public Cliente update(Integer id, Cliente obj) {
-		Cliente cliente = findById(id); // if id exist jpa update object
-		cliente.setNome(obj.getNome());
-		cliente.setEndereco(obj.getEndereco());
+		Optional<Cliente> optional = findById(id);
+		Cliente cliente = optional.get(); // 
 		return repository.save(cliente);
 	}
-
 }

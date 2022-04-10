@@ -2,6 +2,7 @@ package br.com.loccar.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,9 @@ public class Cliente implements Serializable  {
 	private String telefone;
 	private String email;
     private StatusPagamento statusPagamento; 
-	private LocalDate dtCadastro = LocalDate.now();
+	private String dtCadastro;
     
-	
-	
-	private List<Locacao> locacaos = new ArrayList<Locacao>();
+    private List<Locacao> locacaos = new ArrayList<Locacao>();
 
 	public Cliente() {
 
@@ -122,9 +121,25 @@ public class Cliente implements Serializable  {
 		this.statusPagamento = statusPagamento;
 	}
 
+	public String getDtCadastro() {
+		return dtCadastro;
+	}
+
+	public void setDtCadastro(String dtCadastro) {
+		this.dtCadastro = dataFormatada();
+	}
+
+	private String dataFormatada() {
+		LocalDate dtCadastro = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String hojeFormatado = dtCadastro.format(formatter);
+		return  hojeFormatado;
+
+	}
+    
 	@Override
 	public String toString() {
 		return "Cliente [identificador=" + identificador + ", nome=" + nome + ", endereco=" + endereco + ", telefone="
-				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + "]";
+				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + ", dtCadastro=" + dtCadastro +"]";
 	}
 }

@@ -31,7 +31,7 @@ public class DataService {
 		Cliente c2 = new Cliente(null, "Marie Curie", "Warsaw - Polônia", "5555-4444", "mariecurie@email.com");
 		Cliente c3 = new Cliente(null, "James Gosling", "Calgary Alberta - Canada", "8888-7777",
 				"jamesgosling@email.com");
-		Cliente c4 = new Cliente(null, "Steve Jobs", "Sao Francisco California, - EUA", "9999-0000", "stevejobs@email.com");
+		Cliente c4 = new Cliente(null, "Steve Jobs", "Sao Francisco California - EUA", "9999-0000", "stevejobs@email.com");
 		Cliente c5 = new Cliente(null, "Parag Agrawal", "Ajmer Rajasthan - India ", "9999-0000", "paragagrawal@email.com");
 
 		Veiculo v1 = new Veiculo(null, "Mustang Gt", "Ford", "2018-2019", 2018);

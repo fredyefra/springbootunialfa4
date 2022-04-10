@@ -31,7 +31,7 @@
                     </div>
                 </nav>
 
-			 <div class="alert alert-primary text-muted" role="alert" th:text="${message}" th:if="${message}"></div>   
+			 <div class="alert alert-primary" role="alert" th:text="${message}" th:if="${message}"></div>   
                 <div class="container-fluid container__sub">
                     <h1 class="mt-4"> Clientes </h1>
                     <p> Lista de Clientes </p>
@@ -44,6 +44,7 @@
                               <th scope="col"> Endereço </th>
                               <th scope="col"> Telefone </th>
                               <th scope="col"> E-mail </th> 
+                              <th scope="col"> Data de Cadastro </th>
                             </tr>
                           </thead>
                           <tbody>
@@ -53,6 +54,7 @@
                               <td id="endereco" th:text="${cliente.endereco}"  />
                               <td id="telefone"th:text="${cliente.telefone}"/>
                               <td id="email"   th:text="${cliente.email}" />
+                              <td id="cadastro"   th:text="${cliente.dtCadastro}" />
                               <td>
                                   <div class="text-center"> 
                                     <a href="/cadastrar-cliente">
