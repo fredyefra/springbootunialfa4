@@ -10,12 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-public class Cliente implements Serializable {
+public class Cliente implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +25,8 @@ public class Cliente implements Serializable {
 	private String endereco;
 	private String telefone;
 	private String email;
-
+    private StatusPagamento statusPagamento; 
+	
 	private List<Locacao> locacaos = new ArrayList<Locacao>();
 
 	public Cliente() {
@@ -37,10 +39,16 @@ public class Cliente implements Serializable {
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.email = email;
-        //this.locacaos = locacaos;
-	}
+    }
 
-	@Id
+	  public Cliente( String nome, String endereco, String telefone, String email){ 
+		  this.nome = nome; 
+		  this.endereco = endereco; 
+		  this.telefone = telefone;
+	      this.email = email; 
+	}
+	 
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getIdentificador() {
 		return identificador;
@@ -50,8 +58,9 @@ public class Cliente implements Serializable {
 		this.identificador = identificador;
 	}
 
-	@NotEmpty(message = "Campo NOME é requerido")
-	@Length(min = 3, max = 100, message = "O Campo NOME deve ter entre 3 e 50 caracteres")
+	@NotBlank //(message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
+	@Length(min = 3, max = 100, message = "O Campo deve ter entre 3 e 50 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -60,6 +69,8 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getEndereco() {
 		return endereco;
 	}
@@ -67,7 +78,9 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
+    
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getTelefone() {
 		return telefone;
 	}
@@ -85,11 +98,28 @@ public class Cliente implements Serializable {
 		this.locacaos = locacaos;
 	}
 
+	@NotBlank (message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório!")
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	//@Enumerated(EnumType.STRING)
+	public StatusPagamento getStatusPagamento() {
+		return statusPagamento;
+	}
+
+	public void setStatusPagamento(StatusPagamento statusPagamento) {
+		this.statusPagamento = statusPagamento;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [identificador=" + identificador + ", nome=" + nome + ", endereco=" + endereco + ", telefone="
+				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + "]";
 	}
 }

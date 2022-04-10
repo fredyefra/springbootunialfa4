@@ -21,21 +21,20 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/clientes}"> Funcionários </a></li>
-                                <li class="nav-item active"><a class="nav-link" th:href="@{/clientes}"> Clientes </a></li>
-                                <li class="nav-item"><a class="nav-link" th:href="@{clientes}"> Veiculos </a></li>
+                                <li class="nav-item"><a class="nav-link" href="funcionarios.html"> Funcionários </a></li>
+                                <li class="nav-item active"><a class="nav-link" href="clientes.html"> Clientes </a></li>
+                                <li class="nav-item"><a class="nav-link" href="veiculos.html"> Veiculos </a></li>
                                 <li class="nav-item"><a class="nav-link" href="login.html"> login </a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 
-                <!-- <h2 th:text="${message}"></h2> -->
                 <div class="container-fluid container__geral"> 
                     <h1 class="mt-4"> Locadora Toptop </h1>
                     <p> A melhor locadora da cidade.</p>
                     
-                        <form class="row g-3" th:object="${cliente}"  action="#" th:action="@{/clientes}"  method="post">
+                        <form class="row g-3" th:object="${cliente}"  th:action="@{/clientes/{id}(id = ${cliente.identificador})}"  method="POST">
                         
                         <div class="col-12">
                             <label for="form-label" class="form-label"> *Nome </label>
@@ -50,17 +49,16 @@
                         </div>
                         <div class="col-md-6">
                             <label for="form-label" class="form-label"> *Telefone </label>
-                            <input type="tel" class="form-control" th:errorclass="is-invalid"th:field="*{telefone}"  name="telefone" placeholder="Digite aqui seu telefone">
-                            <div class="invalid-feedback" th:errors="*{telefone}"></div>
+                            <input type="tel" class="form-control" th:errorclass="is-invalid"th:field="*{telefone}"  placeholder="Digite aqui seu telefone">
                         </div>
+                        
                         <div class="col-md-6">
                             <label for="form-label" class="form-label"> *Email </label>
-                            <input type="text" class="form-control" th:errorclass="is-invalid"th:field="*{email}"  name="email"   placeholder="Digite aqui seu email"> 
-                            <div class="invalid-feedback" th:errors="*{email}"></div>
+                            <input type="text" class="form-control " th:errorclass="is-invalid" th:field="*{email}"   placeholder="Digite aqui seu email"> 
                         </div>
                         
                         <div class="container my-4 text-center">
-                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
+                            <button type="submit" class="btn btn-primary"> Alterar </button>
                             <a class="btn btn-danger" target="_blank" th:href="@{clientes}" role="button">Cancelar <i class="fab fa-github ms-2"></i></a>
                         </div>
                       
