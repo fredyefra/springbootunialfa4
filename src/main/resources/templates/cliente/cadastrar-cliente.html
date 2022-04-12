@@ -1,76 +1,92 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title> Locadora Toptop </title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link th:href="@{/style/styles.css}" rel="stylesheet" />
-        <link th:href="@{/style/locadora.css}" rel="stylesheet" />
-        <link th:href="@{/style/main.css}" rel="stylesheet" />
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    </head>
-    <body>
-        <div class="d-flex" id="wrapper">
-            <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <a class="nav-link" href="/"> Home </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/clientes}"> Funcionários </a></li>
-                                <li class="nav-item active"><a class="nav-link" th:href="@{/clientes}"> Clientes </a></li>
-                                <li class="nav-item"><a class="nav-link" th:href="@{clientes}"> Veiculos </a></li>
-                                <li class="nav-item"><a class="nav-link" href="login.html"> login </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                
-                <!-- <h2 th:text="${message}"></h2> -->
-                <div class="container-fluid container__geral"> 
-                    <h1 class="mt-4"> Locadora Toptop </h1>
-                    <p> A melhor locadora da cidade.</p>
-                    
-                        <form class="row g-3" th:object="${cliente}"  action="#" th:action="@{/clientes}"  method="post">
-                        
-                        <div class="col-12">
-                            <label for="form-label" class="form-label"> *Nome </label>
-                            <input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{nome}" placeholder="Digite aqui seu nome">
-                            <div class="invalid-feedback" th:errors="*{nome}"></div> 
-                        </div> 
-                        
-                        <div class="col-12">
-                            <label for="form-label" class="form-label"> *Endereço </label>
-                            <input type="text" class="form-control" th:errorclass="is-invalid"th:field="*{endereco}" placeholder="Digite aqui seu endereço">
-                            <div class="invalid-feedback" th:errors="*{endereco}"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="form-label" class="form-label"> *Telefone </label>
-                            <input type="tel" class="form-control" th:errorclass="is-invalid"th:field="*{telefone}"  name="telefone" placeholder="Digite aqui seu telefone">
-                            <div class="invalid-feedback" th:errors="*{telefone}"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="form-label" class="form-label"> *Email </label>
-                            <input type="text" class="form-control" th:errorclass="is-invalid"th:field="*{email}"  name="email"   placeholder="Digite aqui seu email"> 
-                            <div class="invalid-feedback" th:errors="*{email}"></div>
-                        </div>
-                        
-                        <div class="container my-4 text-center">
-                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
-                            <a class="btn btn-danger" target="_blank" th:href="@{/clientes}" role="button">Cancelar <i class="fab fa-github ms-2"></i></a>
-                        </div>
-                      
-                      </form>
-                </div>
-            </div>
-        </div>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Locadora Toptop</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link th:href="@{/style/styles.css}" rel="stylesheet" />
+<link th:href="@{/style/locadora.css}" rel="stylesheet" />
+<link th:href="@{/style/main.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="d-flex" id="wrapper">
+		<div id="page-content-wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container-fluid">
+					<a class="nav-link" href="/"> Home </a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/cliente/clientes}"> Funcionários </a></li>
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/clientes}"> Clientes </a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{clientes}"> Veiculos </a></li>
+							<li class="nav-item"><a class="nav-link" href="login.html">
+									login </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+			<!-- <h2 th:text="${message}"></h2> -->
+			<div class="container-fluid container__geral">
+				<h1 class="mt-4">Locadora Toptop</h1>
+				<p>A melhor locadora da cidade.</p>
+
+				<form class="row g-3" th:object="${cliente}" action="#" th:action="@{/clientes}" method="post">
+
+					<div class="col-12">
+						<label for="form-label" class="form-label"> *Nome </label> <input
+							type="text" class="form-control" th:errorclass="is-invalid"
+							th:field="*{nome}" placeholder="Digite aqui seu nome">
+						<div class="invalid-feedback" th:errors="*{nome}"></div>
+					</div>
+
+					<div class="col-12">
+						<label for="form-label" class="form-label"> *Endereço </label> <input
+							type="text" class="form-control" th:errorclass="is-invalid"
+							th:field="*{endereco}" placeholder="Digite aqui seu endereço">
+						<div class="invalid-feedback" th:errors="*{endereco}"></div>
+					</div>
+					<div class="col-md-6">
+						<label for="form-label" class="form-label"> *Telefone </label> <input
+							type="tel" class="form-control" th:errorclass="is-invalid"
+							th:field="*{telefone}" name="telefone"
+							placeholder="Digite aqui seu telefone">
+						<div class="invalid-feedback" th:errors="*{telefone}"></div>
+					</div>
+					<div class="col-md-6">
+						<label for="form-label" class="form-label"> *Email </label> <input
+							type="text" class="form-control" th:errorclass="is-invalid"
+							th:field="*{email}" name="email"
+							placeholder="Digite aqui seu email">
+						<div class="invalid-feedback" th:errors="*{email}"></div>
+					</div>
+
+					<div class="container my-4 text-center">
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+						<a class="btn btn-danger" th:href="@{/clientes}" role="button">Cancelar<i class="fab fa-github ms-2"></i></a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/scripts.js"></script>
+</body>
 </html>
 

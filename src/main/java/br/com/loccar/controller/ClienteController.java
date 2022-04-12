@@ -73,7 +73,7 @@ public class ClienteController implements Serializable  {
 
 		Optional<Cliente> optional = service.findById(id);
 
-		if (optional.isPresent()) {
+        if (optional.isPresent()) {
 			Cliente x = optional.get();
 			x.setNome(cliente.getNome());
 			x.setEndereco(cliente.getEndereco());
@@ -87,7 +87,7 @@ public class ClienteController implements Serializable  {
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
-
+	
 	/**
 	 * Exclui o cliente na base
 	 **//*
