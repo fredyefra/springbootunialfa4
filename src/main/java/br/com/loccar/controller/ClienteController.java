@@ -88,19 +88,14 @@ public class ClienteController implements Serializable  {
 		return new ModelAndView("redirect:/clientes");
 	}
 	
-	/**
-	 * Exclui o cliente na base
-	 **//*
-		 * @GetMapping(value = "delete/{identificador}") public String
-		 * deleteStudent(@PathVariable("identificador") Integer identificador, Model
-		 * model, RedirectAttributes attributes) { Cliente cliente =
-		 * repository.findByIdentificador(identificador); repository.delete(cliente);
-		 * attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso " +
-		 * cliente.getNome()+"."); model.addAttribute("clientes", repository.findAll());
-		 * return "redirect:/clientes"; }
-		 * 
-		 * public Cliente getCliente() { return cliente; }
-		 * 
-		 * public void setCliente(Cliente cliente) { this.cliente = cliente; }
-		 */
+	@GetMapping(value = "delete/{identificador}") 
+	public String deleteStudent(@PathVariable("identificador") Integer id, Model model, RedirectAttributes attributes) { 
+
+		Optional<Cliente> optional = service.findById(id); 
+		//service.delete(cliente);
+		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso "); 
+		model.addAttribute("clientes", service.findAll());
+		return "redirect:/clientes"; 
+
+	}
 }
