@@ -26,18 +26,34 @@ public class ClienteService {
 	}
 
 		
-	public Page<Cliente> paginacao(int pageNum) { 
+	public Page<Cliente> paginacao(int pageNum,int pageSize) { 
+		
 		
 		Sort sort = Sort.by(Direction.ASC,"identificador");
         
-		int pageSize = 5;
+		//int pageSize = 5;
 		
-	    Pageable pageable = PageRequest.of(pageNum -1, pageSize, sort);
+	    Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
 
-	    pageable.getPageSize();
+	    //pageable.getPageSize();
 
 	    return repository.findAll(pageable); }
 
+	
+	public Page<Cliente> paginacao(PageRequest request) {
+
+		Sort sort = Sort.by(Direction.ASC, "identificador");
+
+		// int pageSize = 5;
+
+		//Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
+
+		// pageable.getPageSize();
+
+		return repository.findAll(request);
+	}
+	
+	
 	 
 	
 	public Optional<Cliente> findById(Integer id) {

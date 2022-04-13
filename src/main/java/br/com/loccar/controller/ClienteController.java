@@ -6,12 +6,14 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,25 +32,42 @@ public class ClienteController implements Serializable  {
 			.getLogger(ClienteController.class.getName());
 
 	@GetMapping("/clientes")
-	public ModelAndView index() {
-		Iterable<Cliente> clientes = service.findAll();
-		ModelAndView mv = new ModelAndView("cliente/clientes");
-		mv.addObject("clientes", clientes);
-		return mv;
+	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
+		
+		model.addAttribute("data" , service.paginacao(PageRequest.of(pageNumber, 4)));
+		
+		//model.addAttribute("data",service.findAll(PageRequest.of(pageNumber, 4)));
+		//ModelAndView mv = new ModelAndView("cliente/clientes2");
+		//mv.addObject("clientes", clientes);
+		return new ModelAndView("cliente/clientes");
 	}
 
+	
+	
+	/*
+	 * @GetMapping("/clientes") public ModelAndView index() { Iterable<Cliente>
+	 * clientes = service.findAll(); ModelAndView mv = new
+	 * ModelAndView("cliente/clientes"); mv.addObject("clientes", clientes); return
+	 * mv; }
+	 */
+	 
+	
+	
+	
+	
+	
 	@GetMapping(value = "/cadastrar-cliente")
 	public String navigationSave(Cliente cliente) {
 		return "cliente/cadastrar-cliente";
 	}
-
+	  
 	@PostMapping("/clientes")
 	public ModelAndView save(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cliente/cadastrar-cliente");
 			return mv;
-		}
+		} 
 		// this.cliente = dto.toCliente();
 		service.save(cliente);
 		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
@@ -56,24 +75,24 @@ public class ClienteController implements Serializable  {
 		return new ModelAndView("redirect:/clientes");
 
 	}
-
+	  
 	@GetMapping("/clientes/{id}/edit")
 	public ModelAndView navigationEdit(@Valid @PathVariable Integer id) {
-
+	  
 		Optional<Cliente> optional = service.findById(id);
 
-			Cliente cliente = optional.get();
-			ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
-			mv.addObject(cliente);
-			return mv;
+		Cliente cliente = optional.get();
+		ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
+		mv.addObject(cliente);
+		return mv;
 	}
-
+	  
 	@PostMapping("/clientes/{id}")
 	public ModelAndView edit(@Valid @PathVariable Integer id, Cliente cliente, RedirectAttributes attributes) {
 
 		Optional<Cliente> optional = service.findById(id);
 
-        if (optional.isPresent()) {
+		if (optional.isPresent()) {
 			Cliente x = optional.get();
 			x.setNome(cliente.getNome());
 			x.setEndereco(cliente.getEndereco());
@@ -87,15 +106,15 @@ public class ClienteController implements Serializable  {
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
-	
-	@GetMapping(value = "delete/{identificador}") 
-	public String deleteStudent(@PathVariable("identificador") Integer id, Model model, RedirectAttributes attributes) { 
+	  
+	@GetMapping(value = "delete/{identificador}")
+	public String deleteStudent(@PathVariable("identificador") Integer id, Model model, RedirectAttributes attributes) {
 
-		Optional<Cliente> optional = service.findById(id); 
-		//service.delete(cliente);
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso "); 
+		Optional<Cliente> optional = service.findById(id); // service.delete(cliente);
+		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso ");
 		model.addAttribute("clientes", service.findAll());
-		return "redirect:/clientes"; 
+		return "redirect:/clientes";
 
 	}
+	 
 }
