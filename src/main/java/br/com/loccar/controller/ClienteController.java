@@ -28,34 +28,15 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
-	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger
-			.getLogger(ClienteController.class.getName());
-
+	//https://www.youtube.com/watch?v=lIgFe20dYq4
+	
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
-		
-		model.addAttribute("data" , service.paginacao(PageRequest.of(pageNumber, 4)));
-		
-		//model.addAttribute("data",service.findAll(PageRequest.of(pageNumber, 4)));
-		//ModelAndView mv = new ModelAndView("cliente/clientes2");
-		//mv.addObject("clientes", clientes);
+		model.addAttribute("data" , service.findAll(PageRequest.of(pageNumber, 4)));
+	    model.addAttribute("currentPage", pageNumber);	
 		return new ModelAndView("cliente/clientes");
 	}
 
-	
-	
-	/*
-	 * @GetMapping("/clientes") public ModelAndView index() { Iterable<Cliente>
-	 * clientes = service.findAll(); ModelAndView mv = new
-	 * ModelAndView("cliente/clientes"); mv.addObject("clientes", clientes); return
-	 * mv; }
-	 */
-	 
-	
-	
-	
-	
-	
 	@GetMapping(value = "/cadastrar-cliente")
 	public String navigationSave(Cliente cliente) {
 		return "cliente/cadastrar-cliente";
@@ -107,14 +88,17 @@ public class ClienteController implements Serializable  {
 		return new ModelAndView("redirect:/clientes");
 	}
 	  
-	@GetMapping(value = "delete/{identificador}")
-	public String deleteStudent(@PathVariable("identificador") Integer id, Model model, RedirectAttributes attributes) {
-
-		Optional<Cliente> optional = service.findById(id); // service.delete(cliente);
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso ");
-		model.addAttribute("clientes", service.findAll());
-		return "redirect:/clientes";
-
-	}
+	/*
+	 * @GetMapping(value = "delete/{identificador}") public String
+	 * deleteStudent(@PathVariable("identificador") Integer id, Model model,
+	 * RedirectAttributes attributes) {
+	 * 
+	 * Optional<Cliente> optional = service.findById(id); //
+	 * service.delete(cliente); attributes.addFlashAttribute("mensagem",
+	 * "Cliente excluido com sucesso "); model.addAttribute("clientes",
+	 * service.findAll()); return "redirect:/clientes";
+	 * 
+	 * }
+	 */
 	 
 }

@@ -32,7 +32,7 @@ public class Cliente implements Serializable  {
     
     private List<Locacao> locacaos = new ArrayList<Locacao>();
 
-	public Cliente() {
+    public Cliente() {
 
 	}
 
@@ -140,6 +140,7 @@ public class Cliente implements Serializable  {
 	@Override
 	public String toString() {
 		return "Cliente [identificador=" + identificador + ", nome=" + nome + ", endereco=" + endereco + ", telefone="
-				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + ", dtCadastro=" + dtCadastro +"]";
+				+ telefone + ", email=" + email + ", statusPagamento=" + statusPagamento + ", dtCadastro=" + dtCadastro
+				+ "]";
 	}
 }

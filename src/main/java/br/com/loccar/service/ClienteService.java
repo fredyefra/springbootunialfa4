@@ -40,7 +40,7 @@ public class ClienteService {
 	    return repository.findAll(pageable); }
 
 	
-	public Page<Cliente> paginacao(PageRequest request) {
+	public Page<Cliente> findAll(PageRequest request) {
 
 		Sort sort = Sort.by(Direction.ASC, "identificador");
 
