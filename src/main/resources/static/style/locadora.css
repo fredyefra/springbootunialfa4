@@ -26,3 +26,17 @@
     justify-content: center;
     margin: auto;
 }
+
+.modal-body {
+    margin: 30px;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.modal-title {
+    text-align: center !important;
+}
