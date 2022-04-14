@@ -69,9 +69,15 @@
                                     
                                     <a th:href="@{/delete/{identificador}(identificador=${cliente.identificador})}"> 
                                    
-                                      <button id="apagar" type="button" class="btn btn-danger">Apagar</button>
+                                      <!-- <button id="apagar" type="button" class="btn btn-danger">Apagar</button> -->
+
+                                      
                                      
                                      </a>
+
+                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalQuestion">
+                                        Apagar
+                                    </button>
                                      
                                   </div>
                               </td>
@@ -95,6 +101,23 @@
 			    </div>
             </div>
         </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modalQuestion" tabindex="-1" aria-labelledby="labelModalQuestion" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="labelModalQuestion"> Deseja realmente excluir este cliente?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body center">
+                        <button type="button" class="btn btn-danger">Sim</button>
+                        <button type="button" class="btn btn-warning">Não</button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
     </body>
