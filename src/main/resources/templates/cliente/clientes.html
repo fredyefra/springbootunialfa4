@@ -84,7 +84,7 @@
 							<li class="page-item"
 								th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
 								th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
-								class="page-link" th:classappend="${currentPage}==${i}?'active':''"></a>
+								class="page-link" th:classappend="${currentPage}==${i}?'active': ''"></a>
 						    </li>
 						    </ul>
                         </nav> 
