@@ -88,13 +88,20 @@
                     <!-- NAO APAGAR -->
                      <div class="d-flex justify-content-center">
                         <nav aria-label="Page navigation example text-center" class="text-center center">
+                            
                             <ul class="pagination text-center center">
+							<li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+							
 							<li class="page-item"
 								th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
 								th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
 								class="page-link" th:classappend="${currentPage}==${i}?'active': ''"></a>
 						    </li>
+						    <li class="page-item">
+						    
+						    <a class="page-link" th:href="@{/clientes/(pageNumber=${currentPage+1})}">Próxima</a></li>
 						    </ul>
+                        
                         </nav> 
                     </div> 
 			    
