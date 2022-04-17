@@ -16,116 +16,143 @@
         <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
     </head>
     <body>
-        <div class="d-flex" id="wrapper">
-            <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <a class="nav-link" href="index.html"> Home </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/clientes}"> Funcionários </a></li>
-                                <li class="nav-item active"><a class="nav-link" th:href="@{/clientes}"> Clientes </a></li>
-                                <li class="nav-item"><a class="nav-link" th:href="@{clientes}"> Veiculos </a></li>
-                                <li class="nav-item"><a class="nav-link" href="login.html"> login </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+	<div class="d-flex" id="wrapper">
+		<div id="page-content-wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container-fluid">
+					<a class="nav-link" href="index.html"> Home </a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/cliente/clientes}"> Funcionários </a></li>
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/clientes}"> Clientes </a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{clientes}"> Veiculos </a></li>
+							<li class="nav-item"><a class="nav-link" href="login.html">
+									login </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 
-			 <div class="alert alert-primary" role="alert" th:text="${message}" th:if="${message}"></div>   
-                <div class="container-fluid container__sub">
-                    <h1 class="mt-4"> Clientes </h1>
-                    <p> Lista de Clientes </p>
+			<div class="alert alert-primary" role="alert" th:text="${message}"
+				th:if="${message}"></div>
+			<div class="container-fluid container__sub">
+				<h1 class="mt-4">Clientes</h1>
+				<p>Lista de Clientes</p>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                             <th scope="col"> ID </th>
-                              <th scope="col"> Nome </th>
-                              <th scope="col"> Endereço </th>
-                              <th scope="col"> Telefone </th>
-                              <th scope="col"> E-mail </th> 
-                              <th scope="col"> Data de Cadastro </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr th:each="cliente: ${data.content}">
-                              <th id="id" scope="row" th:text="${cliente.identificador}"/>
-                              <td id="nome" th:text="${cliente.nome}"/>
-                              <td id="endereco" th:text="${cliente.endereco}"  />
-                              <td id="telefone"th:text="${cliente.telefone}"/>
-                              <td id="email"   th:text="${cliente.email}" />
-                              <td id="cadastro"   th:text="${cliente.dtCadastro}" />
-                              <td>
-                                  <div class="text-center"> 
-                                    <a href="/cadastrar-cliente">
-                                    <button id="cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
-                                    </a>
-                                    
-                                    <a th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
-                                    <button id="editar" type="button" class="btn btn-warning">Editar</button>
-                                    </a>
-                                    
-                                    <a th:href="@{/delete/{identificador}(identificador=${cliente.identificador})}"> 
-                                   
-                                      <!-- <button id="apagar" type="button" class="btn btn-danger">Apagar</button> -->
+				<a href="/cadastrar-cliente">
+					<button id="cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
+                </a>
 
-                                      
-                                     
-                                     </a>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Endereço</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Data de Cadastro</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente: ${data.content}">
+							<th id="id" scope="row" th:text="${cliente.identificador}" />
+							<td id="nome" th:text="${cliente.nome}" />
+							<td id="endereco" th:text="${cliente.endereco}" />
+							<td id="telefone" th:text="${cliente.telefone}" />
+							<td id="email" th:text="${cliente.email}" />
+							<td id="dtcadastro" th:text="${cliente.dtCadastro}" />
+							<td>
+								<div class="text-center">
 
-                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalQuestion">
-                                        Apagar
-                                    </button>
-                                     
-                                  </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                    </table>
-                    
-                    <!-- NAO APAGAR -->
-                     <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation example text-center" class="text-center center">
-                            
-                            <ul class="pagination text-center center">
-							<li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-							
-							<li class="page-item"
-								th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
-								th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
-								class="page-link" th:classappend="${currentPage}==${i}?'active': ''"></a>
-						    </li>
-						    <li class="page-item">
-						    
-						    <a class="page-link" th:href="@{/clientes/(pageNumber=${currentPage+1})}">Próxima</a></li>
-						    </ul>
-                        
-                        </nav> 
-                    </div> 
-			    
-			    </div>
-            </div>
-        </div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="modalQuestion" tabindex="-1" aria-labelledby="labelModalQuestion" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="labelModalQuestion"> Deseja realmente excluir este cliente?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body center">
-                        <button type="button" class="btn btn-danger">Sim</button>
-                        <button type="button" class="btn btn-primary">Não</button>
-                    </div>  
-                </div>
-            </div>
-        </div>
-       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+									<a
+										th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
+										<button id="editar" type="button" class="btn btn-warning">Editar</button>
+									</a>
+
+                                    <!-- NAO APAGAR SE DESCOMENTAR APAGA SEM CHAMAR O MODAL -->
+									<!-- <a th:href="@{/clientes/{id}/(id=${cliente.identificador})}"> -->
+									<a>
+										<button type="button" class="btn btn-danger"
+											data-bs-toggle="modal" data-bs-target="#modalQuestion">
+											Apagar</button>
+									</a>
+								</div>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+
+
+				<form class="row g-3"   method="POST"> 
+				<!-- Modal -->
+				<div class="modal fade" tabindex="-1" th:id ="modalQuestion"
+					aria-labelledby="labelModalQuestion" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="labelModalQuestion">Deseja
+									realmente excluir este cliente?</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body center">
+								<button type="button" class="btn btn-danger"> Sim</button>
+								<button type="button" th:href="@{/clientes}"
+									class="btn btn-primary">Não</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				</form> 
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- INICIO NAO APAGAR MODAL-->
+	<div class="d-flex justify-content-center">
+		<nav aria-label="Page navigation example text-center"
+			class="text-center center">
+			<span th:text="${data.totalPages}"> Total de Páginas: </span>
+
+			<ul class="pagination text-center center">
+				<li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
+					th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
+					class="page-link" th:if="${currentPage}==${i}?'active':''"></a></li>
+
+				<li class="page-item"><a class="page-link"
+					th:if="${data.hasPrevious}"
+					th:href="@{/clientes/(pageNumber=${currentPage+1})}">Próxima</a></li>
+			</ul>
+
+		</nav>
+	</div>
+	<!-- FIM NAO APAGAR MODAL-->
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
     </body>
 </html>

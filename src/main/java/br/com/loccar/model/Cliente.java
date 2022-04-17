@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cliente implements Serializable  {
 
@@ -93,6 +95,7 @@ public class Cliente implements Serializable  {
 		this.telefone = telefone;
 	}
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	public List<Locacao> getLocacaos() {
 		return locacaos;

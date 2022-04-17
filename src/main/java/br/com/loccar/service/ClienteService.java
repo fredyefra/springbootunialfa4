@@ -35,30 +35,19 @@ public class ClienteService {
 		
 	    Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
 
-	    //pageable.getPageSize();
-
+	    pageable.getPageSize();
+        //pageable.hasPrevious();
+	    
+	    
 	    return repository.findAll(pageable); }
 
 	
 	public Page<Cliente> findAll(PageRequest request) {
-
-		Sort sort = Sort.by(Direction.ASC, "identificador");
-
-		// int pageSize = 5;
-
-		//Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
-
-		// pageable.getPageSize();
-
 		return repository.findAll(request);
 	}
 	
-	
-	 
-	
 	public Optional<Cliente> findById(Integer id) {
 		Optional<Cliente>  optional = repository.findById(id);
-		//return optional.orElseThrow(() -> new RuntimeException("Objeto não encontrado! id: " + id + Cliente.class));
 		return optional;
 	}
 	
@@ -73,5 +62,9 @@ public class ClienteService {
 		Optional<Cliente> optional = findById(id);
 		Cliente cliente = optional.get(); // 
 		return repository.save(cliente);
+	}
+
+	public void delete (Integer id) {
+      repository.deleteById(id);		
 	}
 }

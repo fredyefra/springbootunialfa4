@@ -2,6 +2,7 @@ package br.com.loccar.controller;
 
 import java.io.Serializable;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,9 +30,12 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
+	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
+	
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
-		model.addAttribute("data" , service.findAll(PageRequest.of(pageNumber, 4)));
+		
+		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
 	    model.addAttribute("currentPage", pageNumber);	
 		return new ModelAndView("cliente/clientes");
 	}
@@ -85,18 +90,58 @@ public class ClienteController implements Serializable  {
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
-	  
+
+	
 	/*
-	 * @GetMapping(value = "delete/{identificador}") public String
-	 * deleteStudent(@PathVariable("identificador") Integer id, Model model,
-	 * RedirectAttributes attributes) {
+	 * @GetMapping("/clientes/{id}/delete")
 	 * 
-	 * Optional<Cliente> optional = service.findById(id); //
-	 * service.delete(cliente); attributes.addFlashAttribute("mensagem",
-	 * "Cliente excluido com sucesso "); model.addAttribute("clientes",
-	 * service.findAll()); return "redirect:/clientes";
+	 * @ResponseBody public Cliente navigationDelete(@Valid @PathVariable Integer
+	 * id) {
+	 * 
+	 * Optional<Cliente> optional = service.findById(id);
+	 * 
+	 * 
+	 * Cliente cliente = optional.get(); LOGGER.info("Identicador Parametro " + id
+	 * ); LOGGER.info("Identicador Objeto " + cliente.getIdentificador());
+	 * 
+	 * 
+	 * 
+	 * return cliente;
 	 * 
 	 * }
 	 */
+
+	
+	@GetMapping("/clientes/{id}/delete")
+	public ModelAndView navigationDelete(@Valid @PathVariable Integer id, Cliente cliente) {
+	  
+		Optional<Cliente> optional = service.findById(id);
+
+		cliente = optional.get();
+		ModelAndView mv = new ModelAndView("cliente/clientes");
+		mv.addObject(cliente);
+		return mv;
+	}
+
+	
+	
+	@GetMapping(value = "/clientes/{id}") 
+	public ModelAndView delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
+			RedirectAttributes attributes) {
+
+		Optional<Cliente> optional = service.findById(id); //
+		 
+		cliente = optional.get();
+		ModelAndView mv = new ModelAndView("redirect:/clientes");
+		mv.addObject(cliente);
+		model.addAttribute("cliente",cliente);
+		
+		service.delete(cliente.getIdentificador());
+		
+		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso" + cliente.getNome()); 
+		
+		return mv;
+   }
+	 
 	 
 }
