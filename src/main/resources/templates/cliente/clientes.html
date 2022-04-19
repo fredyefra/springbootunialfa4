@@ -1,4 +1,3 @@
-<!-- <!DOCTYPE html> -->
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -29,7 +28,6 @@
         });
     });
 </script>
-
 
 </head>
 <body>
@@ -69,7 +67,7 @@
 					<button id="cadastrar" type="button" class="btn btn-primary">NOVO</button>
 				</a>
 
-				<table id="table" class="table table-striped">
+				<table id="table" class="table table-striped border text-center">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -78,6 +76,7 @@
 							<th scope="col">Telefone</th>
 							<th scope="col">E-mail</th>
 							<th scope="col">Data de Cadastro</th>
+						    <th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -96,17 +95,15 @@
 
 									<a
 										th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
-										<button id="editar" type="button" class="btn btn-warning">Editar</button>
+										<button id="editar" type="button" class="btn btn-warning">EDITAR</button>
 									</a>
 
-                                   <a   th:href="@{/delete/{id}(id = ${cliente.identificador})}"    class="btn btn-danger eBtn">EXCLUIR</a>   
-
-									<!-- NAO APAGAR SE DESCOMENTAR APAGA SEM CHAMAR O MODAL -->
-									<!-- <a th:href="@{/clientes/{id}/(id=${cliente.identificador})}"> -->
-									<a th:href="@{/clientes/{id}/(id=${cliente.identificador})}">
+                                   <a   th:href="@{/delete/{id}(id = ${cliente.identificador})}" class="btn btn-danger eBtn">EXCLUIR</a>   
+	
+									<!-- <a th:href="@{/clientes/{id}/(id=${cliente.identificador})}">
 										<button type="button" class="btn btn-danger"
 										data-bs-target="#modalQuestion"  data-bs-toggle="modal"> Apagar</button>
-									</a> 
+									</a> --> 
 								</div>
 							</td>
 						</tr>
@@ -126,9 +123,9 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body center">
-									<a href="" class="btn btn-danger"  id="delRef"  >Sim</a>
-									<button type="button" th:href="@{/clientes}" role="button"
-										class="btn btn-primary">Não</button>
+									<a href="" class="btn btn-danger"  id="delRef">SIM</a>
+									<a th:href="@{/clientes}" class="btn btn-primary"  >NÃO</a>
+									<!-- <button type="submit" href="/clientes" class="btn btn-primary">NÃO</button> -->
 								</div>
 							</div>
 						</div>
@@ -161,8 +158,7 @@
 	</div>
 	<!-- FIM PAGINCAO -->
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="js/scripts.js"></script>
 
 </body>

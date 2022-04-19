@@ -89,19 +89,6 @@ public class ClienteController implements Serializable  {
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
-
-	@GetMapping("/clientes/{id}/delete")
-	public ModelAndView navigationDelete(@Valid @PathVariable Integer id, Cliente cliente) {
-	  
-		Optional<Cliente> optional = service.findById(id);
-
-		cliente = optional.get();
-		ModelAndView mv = new ModelAndView("cliente/clientes");
-		mv.addObject(cliente);
-		return mv;
-	}
-
-	
 	
 	@GetMapping(value = "/clientes/{id}") 
 	public String delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
