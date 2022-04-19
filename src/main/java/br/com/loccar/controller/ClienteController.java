@@ -90,27 +90,6 @@ public class ClienteController implements Serializable  {
 		return new ModelAndView("redirect:/clientes");
 	}
 
-	
-	/*
-	 * @GetMapping("/clientes/{id}/delete")
-	 * 
-	 * @ResponseBody public Cliente navigationDelete(@Valid @PathVariable Integer
-	 * id) {
-	 * 
-	 * Optional<Cliente> optional = service.findById(id);
-	 * 
-	 * 
-	 * Cliente cliente = optional.get(); LOGGER.info("Identicador Parametro " + id
-	 * ); LOGGER.info("Identicador Objeto " + cliente.getIdentificador());
-	 * 
-	 * 
-	 * 
-	 * return cliente;
-	 * 
-	 * }
-	 */
-
-	
 	@GetMapping("/clientes/{id}/delete")
 	public ModelAndView navigationDelete(@Valid @PathVariable Integer id, Cliente cliente) {
 	  
@@ -125,22 +104,25 @@ public class ClienteController implements Serializable  {
 	
 	
 	@GetMapping(value = "/clientes/{id}") 
-	public ModelAndView delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
+	public String delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
 			RedirectAttributes attributes) {
 
-		Optional<Cliente> optional = service.findById(id); //
-		 
-		cliente = optional.get();
-		ModelAndView mv = new ModelAndView("redirect:/clientes");
-		mv.addObject(cliente);
-		model.addAttribute("cliente",cliente);
+		service.delete(id);
 		
-		service.delete(cliente.getIdentificador());
+		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso"); 
 		
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso" + cliente.getNome()); 
-		
-		return mv;
+		return "redirect:/clientes";
    }
-	 
-	 
+	
+	@GetMapping(value = "/delete/{id}") 
+	public String delete123(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
+			RedirectAttributes attributes) {
+
+		service.delete(id);
+		
+		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso");
+		 
+		
+		return "redirect:/clientes";
+   }
 }
