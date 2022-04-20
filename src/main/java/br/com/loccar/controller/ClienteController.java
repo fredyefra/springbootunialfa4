@@ -32,11 +32,12 @@ public class ClienteController implements Serializable  {
 	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
 	
 	@GetMapping("/clientes")
-	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
+	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber, Cliente cliente) {
 		
 		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
 	    model.addAttribute("currentPage", pageNumber);	
-		return new ModelAndView("cliente/clientes");
+		model.addAttribute("cliente", cliente);
+	    return new ModelAndView("cliente/clientes");
 	}
 
 	@GetMapping(value = "/cadastrar-cliente")
