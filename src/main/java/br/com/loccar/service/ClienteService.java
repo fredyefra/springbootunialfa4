@@ -19,30 +19,21 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 
-	
 	public Iterable<Cliente> findAll() { 
 		Iterable<Cliente> iterable = repository.findAll(); 
 		return iterable; 
 	}
 
-		
-	public Page<Cliente> paginacao(int pageNum,int pageSize) { 
-		
+	public Page<Cliente> findAll(int pageNum,int pageSize) { 
 		
 		Sort sort = Sort.by(Direction.ASC,"identificador");
-        
-		//int pageSize = 5;
-		
-	    Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
 
-	    pageable.getPageSize();
-        //pageable.hasPrevious();
-	    
-	    
-	    return repository.findAll(pageable); }
+	    return repository.findAll(pageable); 
+	}
 
-	
 	public Page<Cliente> findAll(PageRequest request) {
+		request.getSortOr(Sort.by(Direction.DESC, "nome"));
 		return repository.findAll(request);
 	}
 	

@@ -67,7 +67,8 @@
 					<button id="cadastrar" type="button" class="btn btn-primary">NOVO</button>
 				</a>
 
-				<table id="table" class="table table-striped border text-center">
+				<table id="table" class="table table-striped border text-center table table table-sm">
+					<caption>Total de Clientes:</caption>
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -153,7 +154,6 @@
 					th:if="${data.hasPrevious}"
 					th:href="@{/clientes/(pageNumber=${currentPage+1})}">Próxima</a></li>
 			</ul>
-
 		</nav>
 	</div>
 	<!-- FIM PAGINCAO -->
