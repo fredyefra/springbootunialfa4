@@ -34,7 +34,7 @@
 	<div class="d-flex" id="wrapper">
 		<div id="page-content-wrapper">
 			<nav
-				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #e3f2fd;">
 				<div class="container-fluid">
 					<a class="nav-link" href="index.html"> Home </a>
 					<button class="navbar-toggler" type="button"
@@ -68,7 +68,7 @@
 				</a>
 
 				<table id="table" class="table table-striped border text-center table table table-sm">
-					<caption>Total de Clientes:</caption>
+					<caption>Total de Clientes: <span th:text="${data.totalElements}"></span>  </caption>
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -88,9 +88,6 @@
 							<td  th:text="${cliente.telefone}" />
 							<td  th:text="${cliente.email}" />
 							<td  th:text="${cliente.dtCadastro}" />
-							
-							<!-- <td> <a   th:href="@{/delete/{id}(id = ${cliente.identificador})}"    class="btn btn-danger eBtn">EXCLUIR</a>    </td> -->
-							
 							<td>
 								<div class="text-center">
 

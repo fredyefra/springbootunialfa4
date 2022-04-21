@@ -25,7 +25,6 @@ public class ClienteService {
 	}
 
 	public Page<Cliente> findAll(int pageNum,int pageSize) { 
-		
 		Sort sort = Sort.by(Direction.ASC,"identificador");
         Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
 

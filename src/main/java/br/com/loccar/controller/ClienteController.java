@@ -2,7 +2,6 @@ package br.com.loccar.controller;
 
 import java.io.Serializable;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -29,15 +28,14 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
-	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
+	//private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
 	
 	@GetMapping("/clientes")
-	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber, Cliente cliente) {
+	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
 		
 		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
 	    model.addAttribute("currentPage", pageNumber);	
-		model.addAttribute("cliente", cliente);
-	    return new ModelAndView("cliente/clientes");
+		return new ModelAndView("cliente/clientes");
 	}
 
 	@GetMapping(value = "/cadastrar-cliente")
@@ -97,7 +95,7 @@ public class ClienteController implements Serializable  {
 
 		service.delete(id);
 		
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso"); 
+		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!"); 
 		
 		return "redirect:/clientes";
    }
@@ -108,8 +106,7 @@ public class ClienteController implements Serializable  {
 
 		service.delete(id);
 		
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso");
-		 
+		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!");
 		
 		return "redirect:/clientes";
    }
