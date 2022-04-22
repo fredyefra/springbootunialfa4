@@ -28,8 +28,6 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
-	//https://www.youtube.com/watch?v=lIgFe20dYq4
-	
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
 		model.addAttribute("data" , service.findAll(PageRequest.of(pageNumber, 4)));
