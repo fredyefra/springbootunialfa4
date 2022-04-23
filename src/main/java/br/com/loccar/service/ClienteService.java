@@ -19,46 +19,25 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 
-	
 	public Iterable<Cliente> findAll() { 
 		Iterable<Cliente> iterable = repository.findAll(); 
 		return iterable; 
 	}
 
-		
-	public Page<Cliente> paginacao(int pageNum,int pageSize) { 
-		
-		
+	public Page<Cliente> findAll(int pageNum,int pageSize) { 
 		Sort sort = Sort.by(Direction.ASC,"identificador");
-        
-		//int pageSize = 5;
-		
-	    Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
 
-	    //pageable.getPageSize();
+	    return repository.findAll(pageable); 
+	}
 
-	    return repository.findAll(pageable); }
-
-	
 	public Page<Cliente> findAll(PageRequest request) {
-
-		Sort sort = Sort.by(Direction.ASC, "identificador");
-
-		// int pageSize = 5;
-
-		//Pageable pageable = PageRequest.of(pageNum, pageSize, sort);
-
-		// pageable.getPageSize();
-
+		request.getSortOr(Sort.by(Direction.DESC, "nome"));
 		return repository.findAll(request);
 	}
 	
-	
-	 
-	
 	public Optional<Cliente> findById(Integer id) {
 		Optional<Cliente>  optional = repository.findById(id);
-		//return optional.orElseThrow(() -> new RuntimeException("Objeto não encontrado! id: " + id + Cliente.class));
 		return optional;
 	}
 	
@@ -73,5 +52,9 @@ public class ClienteService {
 		Optional<Cliente> optional = findById(id);
 		Cliente cliente = optional.get(); // 
 		return repository.save(cliente);
+	}
+
+	public void delete (Integer id) {
+      repository.deleteById(id);		
 	}
 }

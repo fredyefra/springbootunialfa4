@@ -28,9 +28,12 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
+	//private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
+	
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
-		model.addAttribute("data" , service.findAll(PageRequest.of(pageNumber, 4)));
+		
+		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
 	    model.addAttribute("currentPage", pageNumber);	
 		return new ModelAndView("cliente/clientes");
 	}
@@ -85,18 +88,26 @@ public class ClienteController implements Serializable  {
 		}
 		return new ModelAndView("redirect:/clientes");
 	}
-	  
-	/*
-	 * @GetMapping(value = "delete/{identificador}") public String
-	 * deleteStudent(@PathVariable("identificador") Integer id, Model model,
-	 * RedirectAttributes attributes) {
-	 * 
-	 * Optional<Cliente> optional = service.findById(id); //
-	 * service.delete(cliente); attributes.addFlashAttribute("mensagem",
-	 * "Cliente excluido com sucesso "); model.addAttribute("clientes",
-	 * service.findAll()); return "redirect:/clientes";
-	 * 
-	 * }
-	 */
-	 
+	
+	@GetMapping(value = "/clientes/{id}") 
+	public String delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
+			RedirectAttributes attributes) {
+
+		service.delete(id);
+		
+		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!"); 
+		
+		return "redirect:/clientes";
+   }
+	
+	@GetMapping(value = "/delete/{id}") 
+	public String delete123(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
+			RedirectAttributes attributes) {
+
+		service.delete(id);
+		
+		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!");
+		
+		return "redirect:/clientes";
+   }
 }

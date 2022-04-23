@@ -10,12 +10,12 @@
         <link th:href="@{/style/styles.css}" rel="stylesheet" />
         <link th:href="@{/style/locadora.css}" rel="stylesheet" />
         <link th:href="@{/style/main.css}" rel="stylesheet" />
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     </head>
     <body>
         <div class="d-flex" id="wrapper">
             <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="background-color: #e3f2fd;">
+                <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
                     <div class="container-fluid">
                         <a class="nav-link" href="/"> Home </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -58,8 +58,8 @@
                         </div>
                         
                         <div class="container my-4 text-center">
-                            <button type="submit" class="btn btn-primary"> Alterar</button>
-                            <a class="btn btn-danger" th:href="@{/clientes}" role="button">Cancelar<i class="fab fa-github ms-2"></i></a> 
+                            <button type="submit" class="btn btn-primary">ALTERAR</button>
+                            <a class="btn btn-danger" th:href="@{/clientes}" role="button">CANCELAR<i class="fab fa-github ms-2"></i></a> 
                         </div>
                       
                       </form>

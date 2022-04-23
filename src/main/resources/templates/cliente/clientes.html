@@ -1,119 +1,162 @@
-<!-- <!DOCTYPE html> -->
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title> Locadora Toptop </title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link th:href="@{/style/styles.css}" rel="stylesheet" />
-        <link th:href="@{/style/locadora.css}" rel="stylesheet" />
-        <link th:href="@{/style/main.css}" rel="stylesheet" /> 
-        <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
-    </head>
-    <body>
-        <div class="d-flex" id="wrapper">
-            <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <a class="nav-link" href="index.html"> Home </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/clientes}"> Funcionários </a></li>
-                                <li class="nav-item active"><a class="nav-link" th:href="@{/clientes}"> Clientes </a></li>
-                                <li class="nav-item"><a class="nav-link" th:href="@{clientes}"> Veiculos </a></li>
-                                <li class="nav-item"><a class="nav-link" href="login.html"> login </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Locadora Toptop</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link th:href="@{/style/styles.css}" rel="stylesheet" />
+<link th:href="@{/style/locadora.css}" rel="stylesheet" />
+<link th:href="@{/style/main.css}" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/scripts.js}" src="../../static/js/scripts.js" ></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}" src="../../static/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" th:src="@{/js/script.js}" src="../../static/js/script.js"></script>
 
-			 <div class="alert alert-primary" role="alert" th:text="${message}" th:if="${message}"></div>   
-                <div class="container-fluid container__sub">
-                    <h1 class="mt-4"> Clientes </h1>
-                    <p> Lista de Clientes </p>
+<script>
+    $(document).ready(function(){
+        $(".eBtn").click(function(event){
+            
+        	event.preventDefault();
+        	var href = $(this).attr('href');
+    
+        	$("#modalQuestion #delRef").attr('href',href);
+        	$("#modalQuestion").modal('show');
+        });
+    });
+</script>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                             <th scope="col"> ID </th>
-                              <th scope="col"> Nome </th>
-                              <th scope="col"> Endereço </th>
-                              <th scope="col"> Telefone </th>
-                              <th scope="col"> E-mail </th> 
-                              <th scope="col"> Data de Cadastro </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr th:each="cliente: ${data.content}">
-                              <th id="id" scope="row" th:text="${cliente.identificador}"/>
-                              <td id="nome" th:text="${cliente.nome}"/>
-                              <td id="endereco" th:text="${cliente.endereco}"  />
-                              <td id="telefone"th:text="${cliente.telefone}"/>
-                              <td id="email"   th:text="${cliente.email}" />
-                              <td id="cadastro"   th:text="${cliente.dtCadastro}" />
-                              <td>
-                                  <div class="text-center"> 
-                                    <a href="/cadastrar-cliente">
-                                    <button id="cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
-                                    </a>
-                                    
-                                    <a th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
-                                    <button id="editar" type="button" class="btn btn-warning">Editar</button>
-                                    </a>
-                                    
-                                    <a th:href="@{/delete/{identificador}(identificador=${cliente.identificador})}"> 
-                                   
-                                      <!-- <button id="apagar" type="button" class="btn btn-danger">Apagar</button> -->
-                                     </a>
+</head>
+<body>
+	<div class="d-flex" id="wrapper">
+		<div id="page-content-wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #e3f2fd;">
+				<div class="container-fluid">
+					<a class="nav-link" href="index.html"> Home </a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/cliente/clientes}"> Funcionários </a></li>
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/clientes}"> Clientes </a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{clientes}"> Veiculos </a></li>
+							<li class="nav-item"><a class="nav-link" href="login.html">login </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 
-                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalQuestion">
-                                        Apagar
-                                    </button>
-                                     
-                                  </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                    </table>
-                    
-                    <!-- NAO APAGAR -->
-                     <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation example text-center" class="text-center center">
-                            <ul class="pagination text-center center">
-							<li class="page-item"
-								th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
-								th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
-								class="page-link" th:classappend="${currentPage}==${i}?'active': ''"></a>
-						    </li>
-						    </ul>
-                        </nav> 
-                    </div> 
-			    
-			    </div>
-            </div>
-        </div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="modalQuestion" tabindex="-1" aria-labelledby="labelModalQuestion" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="labelModalQuestion"> Deseja realmente excluir este cliente?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body center">
-                        <button type="button" class="btn btn-danger">Sim</button>
-                        <button type="button" class="btn btn-warning">Não</button>
-                    </div>  
-                </div>
-            </div>
-        </div>
-       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+			<div class="alert alert-primary" role="alert" th:text="${message}"
+				th:if="${message}"></div>
+			<div class="container-fluid container__sub">
+				<h1 class="mt-4">Clientes</h1>
+				<p>Lista de Clientes</p>
+
+				<a href="/cadastrar-cliente">
+					<button id="cadastrar" type="button" class="btn btn-primary">NOVO</button>
+				</a>
+
+				<table id="table" class="table table-striped border text-center table table table-sm">
+					<caption>Total de Clientes: <span th:text="${data.totalElements}"></span>  </caption>
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Endereço</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Data de Cadastro</th>
+						    <th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente: ${data.content}">
+							<th  scope="row" th:text="${cliente.identificador}" />
+							<td  th:text="${cliente.nome}" />
+							<td  th:text="${cliente.endereco}" />
+							<td  th:text="${cliente.telefone}" />
+							<td  th:text="${cliente.email}" />
+							<td  th:text="${cliente.dtCadastro}" />
+							<td>
+								<div class="text-center">
+
+									<a
+										th:href="@{/clientes/{id}/edit/(id=${cliente.identificador})}">
+										<button id="editar" type="button" class="btn btn-warning">EDITAR</button>
+									</a>
+
+                                   <a   th:href="@{/delete/{id}(id = ${cliente.identificador})}" class="btn btn-danger eBtn">EXCLUIR</a>   
+	
+									<!-- <a th:href="@{/clientes/{id}/(id=${cliente.identificador})}">
+										<button type="button" class="btn btn-danger"
+										data-bs-target="#modalQuestion"  data-bs-toggle="modal"> Apagar</button>
+									</a> --> 
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- INICIO MODAL -->
+				<div  class="myForm" >
+					<div class="modal fade " tabindex="-1" id="modalQuestion"
+						aria-labelledby="labelModalQuestion" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="labelModalQuestion">Deseja
+										realmente excluir este cliente?</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body center">
+									<a href="" class="btn btn-danger"  id="delRef">SIM</a>
+									<a th:href="@{/clientes}" class="btn btn-primary"  >NÃO</a>
+									<!-- <button type="submit" href="/clientes" class="btn btn-primary">NÃO</button> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- FIM MODAL -->
+			</div>
+		</div>
+	</div>
+
+	<!-- INICIO PAGINACAO-->
+	<div class="d-flex justify-content-center">
+		<nav aria-label="Page navigation example text-center"
+			class="text-center center">
+
+			<ul class="pagination text-center center">
+				<li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(0, data.totalPages-1)}"><a
+					th:href="@{/clientes/(pageNumber=${i})}" th:text="${i}"
+					class="page-link" th:classappend="${currentPage}==${i}?'active':''"></a></li>
+                                      
+				<li class="page-item"><a class="page-link"
+					th:if="${data.hasPrevious}"
+					th:href="@{/clientes/(pageNumber=${currentPage+1})}">Próxima</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!-- FIM PAGINCAO -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/scripts.js"></script>
+
+</body>
 </html>

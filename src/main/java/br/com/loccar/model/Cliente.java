@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cliente implements Serializable  {
 
@@ -64,7 +66,7 @@ public class Cliente implements Serializable  {
 
 	@NotBlank //(message = "Campo obrigatório!")
 	@NotNull (message = "Campo obrigatório!")
-	@Length(min = 3, max = 100, message = "O Campo deve ter entre 3 e 50 caracteres.")
+	@Length(min = 3, max = 30, message = "O Campo deve ter entre 3 e 50 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -93,6 +95,7 @@ public class Cliente implements Serializable  {
 		this.telefone = telefone;
 	}
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	public List<Locacao> getLocacaos() {
 		return locacaos;
@@ -136,7 +139,32 @@ public class Cliente implements Serializable  {
 		return  hojeFormatado;
 
 	}
-    
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente [identificador=" + identificador + ", nome=" + nome + ", endereco=" + endereco + ", telefone="
