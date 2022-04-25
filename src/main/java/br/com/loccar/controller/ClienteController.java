@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,14 @@ public class ClienteController implements Serializable  {
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
 		
-		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
+		Page<Cliente> findAll = service.findAll(PageRequest.of(pageNumber, 4));
+		/*
+		 * if (findAll.hasNext() != false && !findAll.getContent().isEmpty()) {
+		 * findAll.getPageable().first(); findAll.getPageable().next();
+		 * findAll.getTotalPages(); }
+		 */
+		
+		model.addAttribute("data", findAll);
 	    model.addAttribute("currentPage", pageNumber);	
 		return new ModelAndView("cliente/clientes");
 	}
