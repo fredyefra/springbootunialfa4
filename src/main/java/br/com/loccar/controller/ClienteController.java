@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.loccar.dto.ClienteDTO;
 import br.com.loccar.model.Cliente;
 import br.com.loccar.service.ClienteService;
 
@@ -35,11 +36,6 @@ public class ClienteController implements Serializable  {
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
 		
 		Page<Cliente> findAll = service.findAll(PageRequest.of(pageNumber, 4));
-		/*
-		 * if (findAll.hasNext() != false && !findAll.getContent().isEmpty()) {
-		 * findAll.getPageable().first(); findAll.getPageable().next();
-		 * findAll.getTotalPages(); }
-		 */
 		
 		model.addAttribute("data", findAll);
 	    model.addAttribute("currentPage", pageNumber);	
@@ -52,13 +48,13 @@ public class ClienteController implements Serializable  {
 	}
 	  
 	@PostMapping("/clientes")
-	public ModelAndView save(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid ClienteDTO dto, BindingResult result, Model model, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cliente/cadastrar-cliente");
 			return mv;
 		} 
-		// this.cliente = dto.toCliente();
+		Cliente cliente = dto.toCliente();
 		service.save(cliente);
 		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
 
@@ -70,8 +66,7 @@ public class ClienteController implements Serializable  {
 	public ModelAndView navigationEdit(@Valid @PathVariable Integer id) {
 	  
 		Optional<Cliente> optional = service.findById(id);
-
-		Cliente cliente = optional.get();
+        Cliente cliente = optional.get();
 		ModelAndView mv = new ModelAndView("cliente/detalhar-cliente");
 		mv.addObject(cliente);
 		return mv;
