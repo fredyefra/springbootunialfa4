@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.loccar.dto.ClienteDTO;
+import br.com.loccar.mapper.Mapper;
 import br.com.loccar.model.Cliente;
 import br.com.loccar.service.ClienteService;
 
@@ -30,6 +30,10 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private ClienteService service;
 
+	@Autowired
+	private Mapper mapper;
+	
+	
 	//private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
 	
 	@GetMapping("/clientes")
@@ -48,13 +52,13 @@ public class ClienteController implements Serializable  {
 	}
 	  
 	@PostMapping("/clientes")
-	public ModelAndView save(@Valid ClienteDTO dto, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cliente/cadastrar-cliente");
 			return mv;
 		} 
-		Cliente cliente = dto.toCliente();
+		//Cliente cliente = mapper.converteParaEntidade(dto);
 		service.save(cliente);
 		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
 

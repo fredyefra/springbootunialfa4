@@ -1,5 +1,10 @@
 package br.com.loccar.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.loccar.model.Cliente;
 
 public class ClienteDTO {
@@ -31,6 +36,10 @@ public class ClienteDTO {
 	    this.email = cliente.getEmail();
 	}
 	
+	
+	@NotBlank //(message = "Campo obrigatório!")
+	@NotNull (message = "Campo obrigatório DTO!")
+	@Length(min = 3, max = 30, message = "O Campo deve ter entre 3 e 50 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -39,6 +48,9 @@ public class ClienteDTO {
 		this.nome = nome;
 	}
 	
+    
+    @NotBlank (message = "Campo obrigatório DTO!")
+	@NotNull (message = "Campo obrigatório DTO!")
 	public String getEndereco() {
 		return endereco;
 	}
@@ -47,6 +59,8 @@ public class ClienteDTO {
 		this.endereco = endereco;
 	}
 	
+	@NotBlank (message = "Campo obrigatório DTO!")
+	@NotNull (message = "Campo obrigatório DTO!")
 	public String getTelefone() {
 		return telefone;
 	}
