@@ -75,7 +75,7 @@
 					<!-- <caption>Total de Tamanho: <span th:text="${data.totalPages}"></span>  </caption> --> 
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
+							<!-- <th scope="col">ID</th> -->
 							<th scope="col">Nome</th>
 							<th scope="col">Endereço</th>
 							<th scope="col">Telefone</th>
@@ -86,7 +86,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${data.content}">
-							<th  scope="row" th:text="${cliente.identificador}" />
+							<!-- <th  scope="row" th:text="${cliente.identificador}" /> -->
 							<td  th:text="${cliente.nome}" />
 							<td  th:text="${cliente.endereco}" />
 							<td  th:text="${cliente.telefone}" />
@@ -125,8 +125,8 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body center">
-									<a href="" class="btn btn-danger"  id="delRef">SIM</a>
 									<a th:href="@{/clientes}" class="btn btn-primary"  >NÃO</a>
+									<a href="" class="btn btn-danger"  id="delRef">SIM</a>
 									<!-- <button type="submit" href="/clientes" class="btn btn-primary">NÃO</button> -->
 								</div>
 							</div>

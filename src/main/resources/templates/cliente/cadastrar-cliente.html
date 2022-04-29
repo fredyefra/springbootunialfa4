@@ -40,7 +40,6 @@
 				</div>
 			</nav>
 
-			<!-- <h2 th:text="${message}"></h2> -->
 			<div class="container-fluid container__geral">
 				<h1 class="mt-4">Locadora Toptop</h1>
 				<p>A melhor locadora da cidade.</p>
@@ -60,6 +59,7 @@
 							th:field="*{endereco}" placeholder="Digite aqui seu endereço">
 						<div class="invalid-feedback" th:errors="*{endereco}"></div>
 					</div>
+					
 					<div class="col-md-6">
 						<label for="form-label" class="form-label"> *Telefone </label> <input
 							type="tel" class="form-control" th:errorclass="is-invalid"
@@ -67,6 +67,7 @@
 							placeholder="Digite aqui seu telefone">
 						<div class="invalid-feedback" th:errors="*{telefone}"></div>
 					</div>
+					
 					<div class="col-md-6">
 						<label for="form-label" class="form-label"> *Email </label> <input
 							type="text" class="form-control" th:errorclass="is-invalid"
@@ -89,4 +90,3 @@
 	<script src="js/scripts.js"></script>
 </body>
 </html>
-

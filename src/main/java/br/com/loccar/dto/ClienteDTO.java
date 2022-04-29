@@ -36,8 +36,7 @@ public class ClienteDTO {
 	    this.email = cliente.getEmail();
 	}
 	
-	
-	@NotBlank //(message = "Campo obrigatório!")
+	@NotBlank 
 	@NotNull (message = "Campo obrigatório DTO!")
 	@Length(min = 3, max = 30, message = "O Campo deve ter entre 3 e 50 caracteres.")
 	public String getNome() {

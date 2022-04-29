@@ -19,5 +19,4 @@ public class Mapper {
 		Cliente cliente = modelMapper().map(dto, Cliente.class);
 		return cliente;
 	}
-
 }
