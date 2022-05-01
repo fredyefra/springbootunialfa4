@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.loccar.dto.ClienteDTO;
 import br.com.loccar.mapper.Mapper;
 import br.com.loccar.model.Cliente;
 import br.com.loccar.service.ClienteService;
@@ -34,15 +33,12 @@ public class ClienteController implements Serializable  {
 	@Autowired
 	private Mapper mapper;
 	
-	
 	//private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
 	
 	@GetMapping("/clientes")
 	public ModelAndView index(Model model, @RequestParam (defaultValue = "0") int pageNumber) {
 		
-		Page<Cliente> findAll = service.findAll(PageRequest.of(pageNumber, 4));
-		
-		model.addAttribute("data", findAll);
+		model.addAttribute("data", service.findAll(PageRequest.of(pageNumber, 4)));
 	    model.addAttribute("currentPage", pageNumber);	
 		return new ModelAndView("cliente/clientes");
 	}
@@ -53,14 +49,13 @@ public class ClienteController implements Serializable  {
 	}
 	  
 	@PostMapping("/clientes")
-	public ModelAndView save(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Cliente cliente, BindingResult validate, Model model, RedirectAttributes attributes) {
 
-		if (result.hasErrors()) {
+		if (validate.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cliente/cadastrar-cliente");
 			return mv;
 		}
 		  
-		//Cliente x = cliente.toCliente();
 		service.save(cliente);
 		attributes.addFlashAttribute("message", "Cliente salvo com sucesso!");
 
@@ -102,19 +97,9 @@ public class ClienteController implements Serializable  {
 	public String delete(@Valid @PathVariable Integer id, Cliente cliente, Model model, RedirectAttributes attributes) {
 
 		service.delete(id);
-		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!"); 
+		attributes.addFlashAttribute("message", "Cliente excluido com sucesso TESTANDO!"); 
 		
 		return "redirect:/clientes";
    }
 	
-	@GetMapping(value = "/delete/{id}") 
-	public String delete123(@Valid @PathVariable Integer id, Cliente cliente, Model model, 
-			RedirectAttributes attributes) {
-
-		service.delete(id);
-		
-		attributes.addFlashAttribute("message", "Cliente excluido com sucesso!");
-		
-		return "redirect:/clientes";
-   }
 }
