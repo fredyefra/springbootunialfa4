@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>LoCar</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link th:href="@{/style/styles.css}" rel="stylesheet" />
+<link th:href="@{/style/locadora.css}" rel="stylesheet" />
+<link th:href="@{/style/main.css}" rel="stylesheet" />
+<link th:href="@{/style/base.css}" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="geral">
+      <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+          <nav
+            class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+              <a class="nav-link" href="index"> Home </a>
+              <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                  <li class="nav-item"><a class="nav-link"
+                    th:href="@{/funcionarios/funcionarios}"> Funcionários </a></li>
+                  <li class="nav-item active"><a class="nav-link"
+                    th:href="@{/clientes}"> Clientes </a></li>
+                  <li class="nav-item"><a class="nav-link"
+                    th:href="@{clientes}"> Veiculos </a></li>
+                  <li class="nav-item"><a class="nav-link" th:href="@{/cliente/login.html}">login </a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}" src="../../static/js/scripts.js" ></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}" src="../../static/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}" src="../../static/js/script.js"></script>
+  </body>
+</html>

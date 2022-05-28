@@ -1,0 +1,71 @@
+body {
+    background-color: #1f1b2d;
+}
+
+.container {
+    background-image: url("../img/hero-bg.png");
+}
+nav {
+    color: #666276;
+}
+
+.nav-link {
+    color: #666276;
+}
+
+.nav-item li:a {
+    color: #666276;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.container {
+    background-color: #1f1b2d !important;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+p {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #666276;
+}
+
+.border-bottom {
+    border-bottom: 2px solid #fd5631 !important;    
+}
+
+footer {
+    background-color: #282435;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    color: #666276;
+    padding-top: 20px;
+}
+
+footer h5 {
+    color: #d5cbf1;
+    text-align: center;
+}
+
+footer h5:hover {
+    color: #666276;
+}
+
+.card img {
+    background-color: #666276b2;
+    align-items: center;
+}
